@@ -1,0 +1,49 @@
+{
+    "name": "kyberia",
+    "license": "AGPL-3.0",
+    "private": true,
+    "dependencies": {
+        "admin-lte": "~2.3.8",
+        "bootstrap": "~3.3.7",
+        "bootstrap-webpack": "0.0.5",
+        "exports-loader": "~0.6.3",
+        "expose-loader": "~0.7.1",
+        "fastclick": "~1.0.6",
+        "font-awesome": "~4.7.0",
+        "holderjs": "~2.9.4",
+        "imports-loader": "~0.7.0",
+        "jquery": "~3.1.1",
+        "jquery-slimscroll": "~1.3.8",
+        "url-loader": "~0.5.7"
+    },
+    "devDependencies": {
+        "assets-webpack-plugin": "~3.5.1",
+        "autoprefixer": "~6.6.1",
+        "babel-core": "~6.22.1",
+        "babel-loader": "~6.2.0",
+        "babel-preset-es2015": "~6.22.0",
+        "bundle-loader": "~0.5.4",
+        "css-loader": "~0.26.1",
+        "extract-file-loader": "~0.1.0",
+        "extract-text-webpack-plugin": "~1.0.1",
+        "file-loader": "~0.9.0",
+        "html-webpack-plugin": "~2.26.0",
+        "image-webpack-loader": "~3.1.0",
+        "less": "~2.7.1",
+        "less-loader": "~2.2.3",
+        "node-sass": "~4.3.0",
+        "null-loader": "~0.1.1",
+        "postcss-loader": "~1.2.2",
+        "raw-loader": "~0.5.1",
+        "sass-loader": "~4.1.1",
+        "style-loader": "~0.13.0",
+        "webpack": "~1.14.0",
+        "webpack-dashboard": "~0.2.1",
+        "webpack-dev-server": "~1.16"
+    },
+    "babel": {
+        "presets": [
+            "es2015"
+        ]
+    }
+}

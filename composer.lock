@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fd3c56f2fe5de6d4520e2eb0a384d89",
+    "content-hash": "a26ffa243453a14a586ce337fdb21dcf",
     "packages": [
+        {
+            "name": "dms/twig-extension-bundle",
+            "version": "v2.0",
+            "target-dir": "DMS/Bundle/TwigExtensionBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rdohms/dms-twig-extension-bundle.git",
+                "reference": "33943c40c9e9cfb9423444a263412c8bd4cefffc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rdohms/dms-twig-extension-bundle/zipball/33943c40c9e9cfb9423444a263412c8bd4cefffc",
+                "reference": "33943c40c9e9cfb9423444a263412c8bd4cefffc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "twig/extensions": "~1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "DMS\\Bundle\\TwigExtensionBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Dohms",
+                    "homepage": "http://doh.ms"
+                }
+            ],
+            "description": "DMS Twig Extension Bundle, leverages Fabien Potencier's extra twig extensions for your website.",
+            "homepage": "https://github.com/rdohms/DMSTwigExtensionBundle",
+            "keywords": [
+                "bundle",
+                "dms",
+                "fabpot",
+                "symfony",
+                "twig",
+                "twig extension"
+            ],
+            "time": "2017-01-15T10:32:55+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.3.1",
@@ -874,6 +925,112 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "maba/dependency-injection-extra",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mariusbalcytis/dependency-injection-extra.git",
+                "reference": "28d3b15ff50dab07aceb84167efe2a9092b0d7f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mariusbalcytis/dependency-injection-extra/zipball/28d3b15ff50dab07aceb84167efe2a9092b0d7f9",
+                "reference": "28d3b15ff50dab07aceb84167efe2a9092b0d7f9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/dependency-injection": "^2.3|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "^0.6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maba\\Component\\DependencyInjection\\": "src",
+                    "Maba\\Component\\DependencyInjection\\Tests\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Balčytis",
+                    "email": "marius.balcytis@gmail.com"
+                }
+            ],
+            "keywords": [
+                "compiler pass",
+                "dependency injection",
+                "di"
+            ],
+            "time": "2016-06-28T23:06:56+00:00"
+        },
+        {
+            "name": "maba/webpack-bundle",
+            "version": "0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mariusbalcytis/webpack-bundle.git",
+                "reference": "ae99c2ad10a6b14a75d41ca9d72fe0000b205b49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mariusbalcytis/webpack-bundle/zipball/ae99c2ad10a6b14a75d41ca9d72fe0000b205b49",
+                "reference": "ae99c2ad10a6b14a75d41ca9d72fe0000b205b49",
+                "shasum": ""
+            },
+            "require": {
+                "maba/dependency-injection-extra": "^0.1.1",
+                "php": ">=5.3.2",
+                "symfony/console": "^2.5|^3.0",
+                "symfony/dependency-injection": "^2.6|^3.0",
+                "symfony/framework-bundle": "^2.7|^3.0",
+                "symfony/monolog-bundle": "^2.3|^3.0",
+                "symfony/process": "^2.5|^3.0",
+                "symfony/routing": "^2.7|^3.0",
+                "symfony/templating": "^2.1|^3.0",
+                "symfony/twig-bundle": "^2.3|^3.0",
+                "twig/twig": "^1.27|^2.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "~2.1.4",
+                "doctrine/annotations": "^1.0",
+                "symfony/asset": "^2.7|^3.0",
+                "symfony/translation": "^2.7|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maba\\Bundle\\WebpackBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Balčytis",
+                    "email": "marius.balcytis@gmail.com"
+                }
+            ],
+            "description": "Bundle to Integrate Webpack to Symfony",
+            "keywords": [
+                "Symfony2",
+                "amd",
+                "assets",
+                "commonjs",
+                "symfony",
+                "webpack"
+            ],
+            "time": "2017-01-08T21:16:43+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1909,6 +2066,58 @@
                 "framework"
             ],
             "time": "2017-01-12T21:36:55+00:00"
+        },
+        {
+            "name": "twig/extensions",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.20|~2.0"
+            },
+            "require-dev": {
+                "symfony/translation": "~2.3"
+            },
+            "suggest": {
+                "symfony/translation": "Allow the time_diff output to be translated"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
+            "keywords": [
+                "i18n",
+                "text"
+            ],
+            "time": "2016-10-25T17:34:14+00:00"
         },
         {
             "name": "twig/twig",

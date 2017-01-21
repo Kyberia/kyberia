@@ -68,3 +68,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Webpack Bundle
+# https://github.com/mariusbalcytis/webpack-bundle
+maba_webpack:
+    config:
+        parameters:
+            # Use the ExtractTextPlugin to load our CSS in our <head>
+            extract_css: true
