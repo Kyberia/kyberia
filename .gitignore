@@ -1,0 +1,27 @@
+# App
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/web/bundles/
+
+# Vendor files
+/bower_components/
+/node_modules/
+/vendor/
+
+# Editor files
+.idea
+.cache
+.settings
+.tmproj
+.*.swp
+nbproject
+
+# Mac files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows files
+Thumbs.db
