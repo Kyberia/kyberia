@@ -1,0 +1,96 @@
+AppBundle\Entity\Mail:
+    type: entity
+    table: mail
+    repositoryClass: AppBundle\Entity\Repository\MailRepository
+    indexes:
+        mail_duplicate_id:
+            columns:
+                - mail_duplicate_id
+        mail_user_from_to:
+            columns:
+                - mail_user
+                - mail_from
+                - mail_to
+        mail_user_to_read:
+            columns:
+                - mail_user
+                - mail_to
+                - mail_read
+    uniqueConstraints:
+        user_id_from_to:
+            columns:
+                - mail_user
+                - mail_id
+                - mail_from
+                - mail_to
+    id:
+        id:
+            column: mail_id
+            type: integer
+            nullable: false
+            id: true
+            options:
+                unsigned: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        duplicateId:
+            column: mail_duplicate_id
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        userId:
+            column: mail_user
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        userIdFrom:
+            column: mail_from
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        userIdTo:
+            column: mail_to
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        text:
+            column: mail_text
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            column: mail_timestamp
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+        isRead:
+            column: mail_read
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: 'no'
+    manyToOne:
+        userFrom:
+            targetEntity: User
+            joinColumn:
+                name: mail_from
+                referencedColumnName: user_id
+            fetch: EAGER
+        userTo:
+            targetEntity: User
+            joinColumn:
+                name: mail_to
+                referencedColumnName: user_id
+            fetch: EAGER
+
+    lifecycleCallbacks: {  }

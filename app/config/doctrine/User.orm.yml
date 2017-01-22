@@ -1,0 +1,186 @@
+AppBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: AppBundle\Entity\Repository\UserRepository
+    indexes:
+        date_last_login:
+            columns:
+                - date_last_login
+        user_action_id:
+            columns:
+                - user_action_id
+    uniqueConstraints:
+        login:
+            columns:
+                - login
+    id:
+        id:
+            column: user_id
+            type: integer
+            nullable: false
+            id: true
+            options:
+                unsigned: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        login:
+            column: login
+            type: string
+            nullable: false
+            length: 66
+            options:
+                fixed: false
+        password:
+            column: password
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        email:
+            column: email
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        lastAction:
+            column: last_action
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        userAction:
+            column: user_action
+            type: string
+            nullable: true
+            length: 75
+            options:
+                fixed: false
+        userActionId:
+            column: user_action_id
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        locationVector:
+            column: user_location_vector
+            type: string
+            nullable: true
+            length: 123
+            options:
+                fixed: false
+        mailCount:
+            column: user_mail
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        userMailId:
+            column: user_mail_id
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        k:
+            column: user_k
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                default: 0
+        kWallet:
+            column: k_wallet
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 0
+        listingAmount:
+            column: listing_amount
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 32
+        listingOrder:
+            column: listing_order
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: desc
+        headerId:
+            column: header_id
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        hash:
+            column: hash
+            type: string
+            nullable: true
+            length: 23
+            options:
+                fixed: false
+        accLockout:
+            column: acc_lockout
+            type: datetime
+            nullable: true
+        passwordChangePeriod:
+            column: password_change_period
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        loginRetry:
+            column: login_retry
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        dateLastLogin:
+            column: date_last_login
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+        datePasswordChanged:
+            column: date_password_changed
+            type: datetime
+            nullable: false
+        dateLoginFailed:
+            column: date_login_failed
+            type: datetime
+            nullable: false
+        mailNotify:
+            column: mail_notify
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        bookstyle:
+            column: bookstyle
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        settingMetadata:
+            column: user_setting_metadata
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    oneToMany:
+        mails:
+          targetEntity: Mail
+          mappedBy: user
+    lifecycleCallbacks: {  }
