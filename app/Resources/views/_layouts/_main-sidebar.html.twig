@@ -1,0 +1,21 @@
+{# sidebar: style can be found in sidebar.less #}
+<aside class="main-sidebar">
+    <section class="sidebar">
+        {# TODO replace with some widget with automatic route based item activation #}
+        <ul class="sidebar-menu">
+            <li class="header">NAVIGATION</li>
+
+            <li {% if app.request.get('_route') == 'homepage' %}class="active"{% endif %}>
+                <a href="{{ path('homepage') }}">
+                    <i class="fa fa-home"></i> <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('mail.index') }}">
+                    <i class="fa fa-envelope"></i> <span>Mail</span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">1</small></span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

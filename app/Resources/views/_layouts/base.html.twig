@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}kyberia.sk{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    {% block headStyles %}
+        {% block stylesheets %}{% endblock %}
+
+        {# TODO fix webpack
+        {% set cssUrl = webpack_asset('@app/main.js', 'css') %}
+        {% if cssUrl %}
+            <link rel="stylesheet" href="{{ cssUrl }}"/>
+        {% endif %}
+        #}
+        <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/admin-lte/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="/assets/admin-lte/dist/css/skins/skin-green.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    {% endblock %}
+
+    {% block headScripts %}
+    {% endblock %}
+</head>
+<body class="{{ bodyClass|default() }} skin-green hold-transition">
+    {% block body %}{% endblock %}
+
+    {% block bodyScripts %}
+        {% block javascripts %}{% endblock %}
+        {# TODO fix webpack
+        <script src="{{ webpack_asset('@app/main.js') }}"></script>
+        #}
+        <script src="/assets/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/assets/admin-lte/dist/js/app.min.js"></script>
+        <script src="/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/assets/holderjs/holder.min.js"></script>
+    {% endblock %}
+</body>
+</html>
