@@ -80,6 +80,12 @@ AppBundle\Entity\Mail:
                 fixed: false
                 default: 'no'
     manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: mails
+            joinColumn:
+                name: mail_user
+                referencedColumnName: user_id
         userFrom:
             targetEntity: User
             joinColumn:

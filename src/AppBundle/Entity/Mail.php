@@ -55,6 +55,9 @@ class Mail extends AbstractEntity
     //region Association properties
 
     /** @var User */
+    protected $user;
+
+    /** @var User */
     protected $userFrom;
 
     /** @var User */
@@ -161,6 +164,18 @@ class Mail extends AbstractEntity
     //endregion
 
     //region Association methods
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
     public function getUserFrom()
     {
