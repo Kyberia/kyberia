@@ -1,6 +1,10 @@
 app:
     resource: '@AppBundle/Controller/'
     type:     annotation
+mail:
+    resource: '@AppBundle/Controller/Mail/'
+    type:     annotation
+    prefix:   /mail
 login:
     path: /login
     defaults:  { _controller: AppBundle:Auth:login }

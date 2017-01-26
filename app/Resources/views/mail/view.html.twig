@@ -1,0 +1,41 @@
+{% extends '_layouts/main.html.twig' %}
+
+{% block content %}
+    <div class="direct-chat direct-chat-success">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="input-group">
+                        {{ form_widget(form.text) }}
+                        <span class="input-group-btn">
+                            {{ form_widget(form.submit, {attr: {class: 'btn btn-success btn-flat'}}) }}
+                        </span>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+
+            <div class="box-body">
+                <div class="direct-chat-messages" style="height: auto;">
+                    {% for mail in mails %}
+                        {% set mailUser = mail.isSent ? mail.senderUser : mail.recipientUser %}
+                        <div class="direct-chat-msg {{ mail.isSent ? '' : 'right' }}">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name {{ mail.isSent ? 'pull-left' : 'pull-right' }}">
+                                    {{ mailUser.username }}
+                                </span>
+                                <span class="direct-chat-timestamp {{ mail.isSent ? 'pull-right' : 'pull-left' }}">
+                                    {{ mail.createdAt|time_diff }}
+                                </span>
+                            </div>
+                            <img class="direct-chat-img" src="holder.js/40x40" alt="message user image">
+                            <div class="direct-chat-text">
+                                {{ mail.text }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

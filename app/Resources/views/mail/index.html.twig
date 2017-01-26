@@ -1,0 +1,49 @@
+{% extends '_layouts/main.html.twig' %}
+
+{% block content %}
+    <div class="box box-default">
+        <div class="box-body no-padding">
+            <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        {% for mail in mails %}
+                            <tr>
+                                <td>
+                                    {% if mail.isReplied %}
+                                        <i class="fa {{ mail.isRead ? 'fa-check' : 'fa-reply' }}"></i>
+                                    {% elseif not mail.isRead %}
+                                        <i class="fa fa-circle"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('mail.view', {userId: mail.recipientUserId}) }}">
+                                        {{ mail.recipientUser.username }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('mail.view', {userId: mail.recipientUserId}) }}">
+                                        {{ mail.text|truncate(200, true) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ mail.createdAt|time_diff }}
+                                </td>
+                                <td>
+                                    <a href="{{ path('mail.view', {userId: mail.recipientUserId}) }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="box-footer no-padding">
+            <div class="mailbox-controls text-center">
+                {# TODO pagination #}
+            </div>
+        </div>
+    </div>
+{% endblock %}
