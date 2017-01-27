@@ -6,19 +6,19 @@ use AppBundle\DI\AuthenticatedUserAwareTrait;
 use AppBundle\Entity\Mail;
 use AppBundle\Entity\Repository\MailRepository;
 use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class MailService implements AuthenticatedUserAwareInterface
 {
     use AuthenticatedUserAwareTrait;
 
-    /** @var EntityManager */
+    /** @var EntityManagerInterface */
     private $entityManager;
 
     /** @var MailRepository */
     private $mailRepository;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
         $this->mailRepository = $entityManager->getRepository(Mail::class);
@@ -82,7 +82,7 @@ class MailService implements AuthenticatedUserAwareInterface
     {
         $userIdFrom = $this->authenticatedUser->getId();
 
-        $status = $this->entityManager->transactional(function (EntityManager $em) use ($userIdFrom, $userIdTo, $text) {
+        $status = $this->entityManager->transactional(function (EntityManagerInterface $em) use ($userIdFrom, $userIdTo, $text) {
             $now = new \DateTime();
 
             $mail = new Mail();
