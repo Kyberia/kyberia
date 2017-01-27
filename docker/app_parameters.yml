@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: kyberia2
+    database_user: kyberia
+    database_password: blah
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: BKMnKupLYfklnF3TTCpnTxHRmkaKg0RHw0N3UcLV
