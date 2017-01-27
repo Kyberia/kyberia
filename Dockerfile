@@ -60,7 +60,7 @@ COPY data/kyberia-db.sql /kyberia/data/kyberia-db.sql
 USER mysql
 RUN (run_percona.sh &) && \
     while [[ ! -S /var/lib/mysql/mysql.sock ]] { sleep 1 } && \
-    killall mysqld && sleep 3
+    killall mysqld && while [[ -S /var/lib/mysql/mysql.sock ]] { sleep 1 }
 
 # mysql 5.7 sets a random default root password. Disable it.
 RUN while { read i } \
@@ -69,7 +69,8 @@ RUN while { read i } \
     (run_percona.sh &) && \
     while [[ ! -S /var/lib/mysql/mysql.sock ]] { sleep 1 } && \
     mysql -u root "-p$mpasswd" --connect-expired-password -e " \
-        ALTER USER 'root'@'localhost' IDENTIFIED BY '' ; FLUSH PRIVILEGES;"
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '' ; FLUSH PRIVILEGES;" && \
+    killall mysqld && while [[ -S /var/lib/mysql/mysql.sock ]] { sleep 1 }
         
 RUN (run_percona.sh &) && \
     while [[ ! -S /var/lib/mysql/mysql.sock ]] { sleep 1 } && \
