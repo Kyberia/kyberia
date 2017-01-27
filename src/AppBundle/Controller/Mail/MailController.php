@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Controller\Mail;
 
-use AppBundle\Form\SendMailForm;
+use AppBundle\Form\Type\SendMailFormType;
 use AppBundle\Services\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,7 +36,7 @@ class MailController extends Controller
     {
         $mails = $this->getMailService()->getMessagesByRecipientUserId($userId);
 
-        $form = $this->createForm(SendMailForm::class, null, []);
+        $form = $this->createForm(SendMailFormType::class, null, []);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
