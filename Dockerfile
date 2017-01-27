@@ -83,6 +83,7 @@ USER root
 
 COPY docker/supervisord.conf /etc/supervisord.conf
 COPY docker/httpd24_kyberia.conf /opt/rh/httpd24/root/etc/httpd/conf.d/kyberia.conf
+COPY docker/symfony_htaccess /opt/rh/httpd24/root/etc/httpd/kyberia_htaccess.conf
 COPY docker/warprc /root/.warprc
 
 EXPOSE 80
