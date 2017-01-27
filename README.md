@@ -11,7 +11,7 @@ image.
 
 Build the kyberia image named `kyberia/www`:
 ```
-docker build --rm -t kyberia/www -f .
+docker build --rm -t kyberia/www .
 ```
 
 From a docker image, you can create multiple containers, which are like an
