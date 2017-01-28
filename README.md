@@ -1,5 +1,10 @@
 # Kyberia
 
+[![Gemnasium](https://img.shields.io/gemnasium/Kyberia/kyberia.svg)](https://gemnasium.com/github.com/Kyberia/kyberia)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/Kyberia/kyberia.svg)](https://scrutinizer-ci.com/g/Kyberia/kyberia/)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/Kyberia/kyberia.svg)](https://scrutinizer-ci.com/g/Kyberia/kyberia/)
+[![Code Climate](https://img.shields.io/codeclimate/github/Kyberia/kyberia.svg)](https://codeclimate.com/github/Kyberia/kyberia)
+
 ## Docker for local kyberia development
 
 This image is based on CentOS 7.x which is compatible with Red Hat 7.x.
