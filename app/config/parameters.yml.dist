@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            BKMnKupLYfklnF3TTCpnTxHRmkaKg0RHw0N3UcLV
+
+    # Path to asset manifest file
+    asset.manifest_file: ~

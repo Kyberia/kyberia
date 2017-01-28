@@ -1,6 +1,12 @@
 imports:
     - { resource: config.yml }
 
+framework:
+    assets:
+        base_urls:
+            - "//cdn.kyberia.sk/"
+        version_strategy: asset.version_strategy.manifest_file
+
 #doctrine:
 #    orm:
 #        metadata_cache_driver: apc

@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
+    asset.version_strategy.manifest_file:
+        class: AppBundle\Asset\VersionStrategy\ManifestFileVersionStrategy
+        arguments: ['%asset.manifest_file%']
+    # Application services
     app.mail:
         class: AppBundle\Services\MailService
         arguments: ['@doctrine.orm.entity_manager']
