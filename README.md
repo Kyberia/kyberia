@@ -32,3 +32,27 @@ docker run \
     -v $PWD:/kyberia \
     -e TERM=$TERM -ti kyberia/www
 ```
+
+
+## Project directory structure
+
+```
+.
+├── app
+│   ├── Resources   # twig templates & main.js for JS assets
+│   └── config      # config related to building & bundling (webpack, doctrine, Symfony)
+├── bin             # TBD
+├── data            # folder that contains initial SQL dump
+├── docker          # config files for docker images
+├── mysqld-socket   # TBD
+├── node_modules    # (downloaded) JS dependencies via npm/yarn
+├── src             # source code
+├── tests           # source code tests
+├── var             # TBD
+│   ├── cache       # (populated in runtime)
+│   ├── logs        # (populated in runtime)
+│   └── sessions    # (populated in runtime)
+├── vendor          # (downloaded) PHP depdendencies via composer
+└── web             # www ROOT
+    └── bundles     # TBD
+```
