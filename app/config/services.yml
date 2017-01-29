@@ -7,6 +7,13 @@ services:
     asset.version_strategy.manifest_file:
         class: AppBundle\Asset\VersionStrategy\ManifestFileVersionStrategy
         arguments: ['%asset.manifest_file%']
+    menu.menu_builder:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        calls:
+            - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
     # Application services
     app.mail:
         class: AppBundle\Service\MailService

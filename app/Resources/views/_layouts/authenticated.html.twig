@@ -5,7 +5,12 @@
 {% block body %}
     <div class="wrapper">
         {% include '_layouts/_header.html.twig' %}
-        {% include '_layouts/_main-sidebar.html.twig' %}
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                {{ knp_menu_render('main', {template:'_menu/sidebar-menu.html.twig'}) }}
+            </section>
+        </aside>
 
         <div class="content-wrapper">
             {% if contentHeader|default(false) %}

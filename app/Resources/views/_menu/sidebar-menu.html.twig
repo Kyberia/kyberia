@@ -1,0 +1,46 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% set options = options|merge({branch_class: 'treeview', currentClass: 'active', ancestorClass: 'active'}) %}
+
+{% block list %}
+    {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
+        <ul class="{{ item.isRoot() ? 'sidebar-menu' : 'treeview-menu' }}">
+            {{ block('children') }}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block spanElement %}
+{% spaceless %}
+    <a href="#">
+        {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
+            {% set extraLabel = item.setExtra('label', []) %}
+            {{ block('label') }}
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    </a>
+{% endspaceless %}
+{% endblock %}
+
+{% block label %}
+{% spaceless %}
+    {% if item.getExtra('icon', false) %}
+        <i class="fa fa-fw fa-{{ item.getExtra('icon') }}"></i>
+    {% endif %}
+
+    {{- parent() -}}
+
+    {% set extraLabel = item.getExtra('label', []) %}
+    {% if extraLabel is not empty %}
+        <span class="pull-right-container">
+            <small class="label pull-right {{ extraLabel.class|default('bg-green') }}">
+                {{ extraLabel.content|default }}
+            </small>
+        </span>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}
