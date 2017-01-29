@@ -15,22 +15,23 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbar-collapse">
-
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ path('login') }}">Login</a></li>
+                            {#<li><a href="{{ path('registration') }}">Register</a></li>#}
+                        </ul>
+                    </div>
+                </div>
             </nav>
         </header>
 
-        <!-- Full Width Column -->
         <div class="content-wrapper">
             <div class="container">
-                <!-- Main content -->
-                <section class="content">
+                <main class="content">
                     {% block content %}{% endblock %}
-                </section><!-- /.content -->
-            </div><!-- /.container -->
-        </div><!-- /.content-wrapper -->
+                </main>
+            </div>
+        </div>
 
         {% include '_layouts/_footer.html.twig' %}
-    </div><!-- ./wrapper -->
+    </div>
 {% endblock %}
