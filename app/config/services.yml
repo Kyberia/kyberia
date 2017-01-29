@@ -9,7 +9,7 @@ services:
         arguments: ['%asset.manifest_file%']
     # Application services
     app.mail:
-        class: AppBundle\Services\MailService
+        class: AppBundle\Service\MailService
         arguments: ['@doctrine.orm.entity_manager']
         calls:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]

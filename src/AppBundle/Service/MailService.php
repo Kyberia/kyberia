@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Services;
+namespace AppBundle\Service;
 
 use AppBundle\DI\AuthenticatedUserAwareInterface;
 use AppBundle\DI\AuthenticatedUserAwareTrait;

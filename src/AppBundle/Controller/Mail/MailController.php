@@ -2,7 +2,7 @@
 namespace AppBundle\Controller\Mail;
 
 use AppBundle\Form\Type\SendMailFormType;
-use AppBundle\Services\MailService;
+use AppBundle\Service\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
