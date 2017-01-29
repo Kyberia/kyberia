@@ -1,11 +1,11 @@
 <?php
 namespace AppBundle\Service;
 
-use AppBundle\DI\AuthenticatedUserAwareInterface;
-use AppBundle\DI\AuthenticatedUserAwareTrait;
 use AppBundle\Entity\Mail;
 use AppBundle\Entity\Repository\MailRepository;
 use AppBundle\Entity\User;
+use AppBundle\Security\AuthenticatedUserAwareInterface;
+use AppBundle\Security\AuthenticatedUserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MailService implements AuthenticatedUserAwareInterface
