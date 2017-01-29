@@ -76,6 +76,14 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# KnpMenu Bundle
+# https://github.com/KnpLabs/KnpMenuBundle
+knp_menu:
+    providers:
+        builder_alias: false
+        builder_service: true
+        container_aware: false
+
 # Webpack Bundle
 # https://github.com/mariusbalcytis/webpack-bundle
 maba_webpack:
