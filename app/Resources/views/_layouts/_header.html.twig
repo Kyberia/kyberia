@@ -5,9 +5,8 @@
         <span class="logo-lg">KYBERIA SK</span> <!-- logo for regular state and mobile devices -->
     </a>
 
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
+        <!-- Main sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
@@ -15,26 +14,28 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu">
+                <!-- Messages -->
+                <li class="messages-menu">
+                    <a href="{{ path('mail.index') }}">
+                        <i class="fa fa-envelope"></i>
+                        {% if app.user.mailCount > 0 %}
+                            <span class="label label-info">{{ app.user.mailCount }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <!-- Right sidebar toggle button -->
+                <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-users"></i></a></li>
+                <!-- User menu -->
+                <li class="user-menu dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img data-src="holder.js/100x100?auto=yes" class="user-image" alt="User Image">
                         <span class="hidden-xs">{{ app.user.username }}</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header" style="height: 65px;">
-                            <p>{{ app.user.username }}</p>
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>
-                            <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Logout</a>
-                            </div>
-                        </li>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-cog"></i>Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ logout_path() }}"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li>
                     </ul>
                 </li>
             </ul>
