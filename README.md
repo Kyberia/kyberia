@@ -4,6 +4,7 @@
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/Kyberia/kyberia.svg)](https://scrutinizer-ci.com/g/Kyberia/kyberia/)
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/Kyberia/kyberia.svg)](https://scrutinizer-ci.com/g/Kyberia/kyberia/)
 [![Code Climate](https://img.shields.io/codeclimate/github/Kyberia/kyberia.svg)](https://codeclimate.com/github/Kyberia/kyberia)
+[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/be359dbe-f1de-42de-a24e-f45970e0250e.svg)](https://insight.sensiolabs.com/projects/be359dbe-f1de-42de-a24e-f45970e0250e)
 
 ## Docker for local kyberia development
 
