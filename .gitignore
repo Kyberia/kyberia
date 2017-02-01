@@ -3,6 +3,12 @@
 /build/
 /phpunit.xml
 /web/bundles/
+# Webpack output
+/web/css
+/web/fonts
+/web/images
+/web/js
+
 
 # Vendor files
 /bower_components/
