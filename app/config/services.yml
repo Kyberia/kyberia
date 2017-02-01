@@ -14,6 +14,17 @@ services:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+    session.memcached:
+        class: Memcached
+        arguments:
+            persistent_id: '%session_memcached_prefix%'
+        calls:
+            - [addServer, ['%session_memcached_host%', '%session_memcached_port%']]
+    session.handler.memcached:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcachedSessionHandler
+        arguments:
+            memcached: '@session.memcached'
+            options: { prefix: '%session_memcached_prefix%', expiretime: '%session_memcached_expire%' }
     # Application services
     app.mail:
         class: AppBundle\Service\MailService
