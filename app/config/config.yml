@@ -41,6 +41,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
+    exception_controller: controller.error_controller:showAction
     date:
         format: d.m.Y - H:i:s
         timezone: Europe/Bratislava
