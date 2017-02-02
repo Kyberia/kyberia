@@ -16,11 +16,6 @@
             <link rel="stylesheet" href="{{ cssUrl }}"/>
         {% endif %}
         #}
-        <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/assets/admin-lte/dist/css/AdminLTE.min.css">
-        <link rel="stylesheet" href="/assets/admin-lte/dist/css/skins/skin-green.min.css">
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -37,14 +32,7 @@
 
     {% block bodyScripts %}
         {% block javascripts %}{% endblock %}
-        {# TODO fix webpack
-        <script src="{{ webpack_asset('@app/main.js') }}"></script>
-        #}
-        <script src="/assets/jquery/dist/jquery.min.js"></script>
-        <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/assets/admin-lte/dist/js/app.min.js"></script>
-        <script src="/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="/assets/holderjs/holder.min.js"></script>
+        <script src="/js/main.bundle.js"></script>
     {% endblock %}
 </body>
 </html>

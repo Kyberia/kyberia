@@ -55,5 +55,16 @@ docker run \
 │   └── sessions    # (populated in runtime)
 ├── vendor          # (downloaded) PHP depdendencies via composer
 └── web             # www ROOT
-    └── bundles     # TBD
+    ├── css         # Webpack output - styles: main + vendor
+    ├── fonts       # Webpack output - fonts
+    ├── images      # Webpack output - referenced images
+    └── js          # Webpack output - JavaScript: - main + vendor
 ```
+
+## Webpack
+
+  * using [Webpack2](https://webpack.js.org/)
+  * 2 profiles
+    * `dev` supports dev-server via `npm start`
+    * `prod` creates the production bundle output in `<rootDir>/web`
+ 

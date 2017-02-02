@@ -1,17 +1,15 @@
-// console maba:webpack:dev-server
-require('expose?$!expose?jQuery!jquery');
+require('expose-loader?$!expose-loader?jQuery!jquery');
 
 // Bootstrap & bootstrap-webpack
 require('bootstrap');
-require('bootstrap-webpack');
 
 // AdminLTE, skins and font-awesome
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
-require('admin-lte/build/less/AdminLTE.less');
-require('admin-lte/build/less/skins/skin-green.less');
+require('admin-lte/dist/css/AdminLTE.css');
+require('admin-lte/dist/css/skins/skin-green.min.css');
 
 // Font Awesome
-require('font-awesome/less/font-awesome.less');
+require('font-awesome/css/font-awesome.min.css');
 
 // Other libs
 require('holderjs');
