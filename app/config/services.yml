@@ -34,3 +34,6 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         calls:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
+    app.node:
+        class: AppBundle\Service\NodeService
+        arguments: ['@doctrine.orm.entity_manager']
