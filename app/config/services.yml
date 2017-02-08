@@ -28,6 +28,13 @@ services:
         arguments:
             memcached: '@session.memcached'
             options: { prefix: '%session_memcached_prefix%', expiretime: '%session_memcached_expire%' }
+    # Security voters
+    app.security.node_voter:
+        class: AppBundle\Security\NodeVoter
+        tags:
+            - { name: security.voter }
+        # small performance boost
+        public: false
     # Application services
     app.mail:
         class: AppBundle\Service\MailService
@@ -36,4 +43,7 @@ services:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
     app.node:
         class: AppBundle\Service\NodeService
-        arguments: ['@doctrine.orm.entity_manager']
+        arguments: ['@doctrine.orm.entity_manager', '@app.permission']
+    app.permission:
+        class: AppBundle\Service\PermissionService
+        arguments: ['@security.authorization_checker']
