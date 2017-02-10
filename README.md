@@ -67,3 +67,11 @@ docker run \
     * `dev` supports dev-server via `npm start`
     * `prod` creates the production bundle output in `<rootDir>/web`
  
+
+## Swagger 
+
+  * Kyberia API is described in `api-description.yml` file
+  * you can edit online - [swagger editor](http://editor.swagger.io)
+  * you can edit locally - `docker run -p 8080:8080 swaggerapi/swagger-editor`
+
+  
