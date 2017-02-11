@@ -35,6 +35,24 @@ services:
             - { name: security.voter }
         # small performance boost
         public: false
+
+    # Entity Repositories
+    app.entity.repository.mail:
+        class: AppBundle\Entity\Repository\MailRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Mail
+    app.entity.repository.node:
+        class: AppBundle\Entity\Repository\NodeRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Node
+    app.entity.repository.user:
+        class: AppBundle\Entity\Repository\UserRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\User
+
     # Application services
     app.mail:
         class: AppBundle\Service\MailService
