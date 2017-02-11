@@ -7,6 +7,8 @@ mail:
     prefix:   /mail
 login:
     path: /login
+    methods: [ get ]
     defaults:  { _controller: AppBundle:Auth:login }
 logout:
     path: /logout
+    methods: [ get, post ]

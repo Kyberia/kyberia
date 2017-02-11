@@ -1,0 +1,99 @@
+AppBundle\Entity\NodeAccess:
+    type: entity
+    table: node_access
+    repositoryClass: AppBundle\Entity\Repository\NodeAccessRepository
+    indexes:
+        user_bookmark:
+            columns:
+                - user_id
+                - node_bookmark
+        node_bookmark:
+            columns:
+                - node_id
+                - node_bookmark
+        user_id_last_visit:
+            columns:
+                - user_id
+                - last_visit
+    uniqueConstraints:
+        node_id_user_id:
+            columns:
+                - node_id
+                - user_id
+    fields:
+        nodeId:
+            column: node_id
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        userId:
+            column: user_id
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        bookmark:
+            column: node_bookmark
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: 'no'
+        permission:
+            column: node_permission
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        nodeUserSubchildCount:
+            column: node_user_subchild_count
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        lastVisitAt:
+            column: last_visit
+            type: datetime
+            nullable: true
+        visits:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 0
+        bookmarkCategoryNodeId:
+            column: bookmark_category
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        givenK:
+            column: given_k
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: 'no'
+    manyToOne:
+        node:
+            targetEntity: Node
+            joinColumn:
+                name: node_id
+                referencedColumnName: node_id
+        user:
+            targetEntity: User
+            joinColumn:
+                name: user_id
+                referencedColumnName: user_id
+        bookmarkCategory:
+            targetEntity: Node
+            joinColumn:
+                name: bookmark_category
+                referencedColumnName: node_id
+    lifecycleCallbacks: {  }

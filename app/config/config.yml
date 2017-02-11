@@ -41,6 +41,14 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
+    exception_controller: controller.error_controller:showAction
+    date:
+        format: d.m.Y - H:i:s
+        timezone: Europe/Bratislava
+    number_format:
+        decimals: 2
+        decimal_point: ','
+        thousands_separator: ' '
 
 # Doctrine Configuration
 doctrine:
@@ -51,6 +59,7 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        server_version: "%database_version%"
         charset:  UTF8
         mapping_types:
             enum: string

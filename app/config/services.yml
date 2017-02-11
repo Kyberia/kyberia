@@ -7,6 +7,9 @@ services:
     asset.version_strategy.manifest_file:
         class: AppBundle\Asset\VersionStrategy\ManifestFileVersionStrategy
         arguments: ['%asset.manifest_file%']
+    controller.error_controller:
+        class: AppBundle\Controller\ErrorController
+        arguments: ['@twig', '%kernel.debug%']
     menu.menu_builder:
         class: AppBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory"]
@@ -14,9 +17,51 @@ services:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+    session.memcached:
+        class: Memcached
+        arguments:
+            persistent_id: '%session_memcached_prefix%'
+        calls:
+            - [addServer, ['%session_memcached_host%', '%session_memcached_port%']]
+    session.handler.memcached:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcachedSessionHandler
+        arguments:
+            memcached: '@session.memcached'
+            options: { prefix: '%session_memcached_prefix%', expiretime: '%session_memcached_expire%' }
+    # Security voters
+    app.security.node_voter:
+        class: AppBundle\Security\NodeVoter
+        tags:
+            - { name: security.voter }
+        # small performance boost
+        public: false
+
+    # Entity Repositories
+    app.entity.repository.mail:
+        class: AppBundle\Entity\Repository\MailRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Mail
+    app.entity.repository.node:
+        class: AppBundle\Entity\Repository\NodeRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Node
+    app.entity.repository.user:
+        class: AppBundle\Entity\Repository\UserRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\User
+
     # Application services
     app.mail:
         class: AppBundle\Service\MailService
         arguments: ['@doctrine.orm.entity_manager']
         calls:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
+    app.node:
+        class: AppBundle\Service\NodeService
+        arguments: ['@doctrine.orm.entity_manager', '@app.entity.repository.node', '@app.permission']
+    app.permission:
+        class: AppBundle\Service\PermissionService
+        arguments: ['@security.authorization_checker']

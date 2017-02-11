@@ -82,7 +82,8 @@ class MailService implements AuthenticatedUserAwareInterface
     {
         $userIdFrom = $this->authenticatedUser->getId();
 
-        $status = $this->entityManager->transactional(function (EntityManagerInterface $em) use ($userIdFrom, $userIdTo, $text) {
+        $status = $this->entityManager->transactional(function ($em) use ($userIdFrom, $userIdTo, $text) {
+            /** @var EntityManagerInterface $em */
             $now = new \DateTime();
 
             $mail = new Mail();
@@ -125,7 +126,7 @@ class MailService implements AuthenticatedUserAwareInterface
 
         $this->authenticatedUser->setMailCount($count);
         $this->entityManager->persist($this->authenticatedUser);
-        $this->entityManager->flush($this->authenticatedUser);
+        $this->entityManager->flush();
 
         return $count;
     }

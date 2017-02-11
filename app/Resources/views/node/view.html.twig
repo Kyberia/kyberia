@@ -1,0 +1,46 @@
+{% extends '_layouts/two-column-left.html.twig' %}
+
+{% block leftColumn %}
+    <div class="box box-widget">
+        <div class="box-body box-profile">
+            <img class="profile-user-img img-responsive" data-src="holder.js/230x230" alt="{{ node.name }} image">
+
+            <h3 class="profile-username text-center">{{ node.name }}</h3>
+
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                    <b>template</b>
+                    <a href="{{ path('node.view', {id: node.templateId}) }}" class="pull-right">{{ node.templateId }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>parent</b>
+                    <a href="{{ path('node.view', {id: node.parentId}) }}" class="pull-right">{{ node.parentId }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>owner</b>
+                    <a href="#" class="pull-right">{{ node.createdBy }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>created</b>
+                    <span class="pull-right">{{ node.createdAt|date }}</span>
+                </li>
+                <li class="list-group-item">
+                    <b>updated</b>
+                    <span class="pull-right">{{ node.updatedAt|date }}</span>
+                </li>
+            </ul>
+
+            <a href="#" class="btn btn-primary btn-block"><b>book</b></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block contentColumn %}
+    <div class="box box-widget">
+        <div class="box-body">
+            {% autoescape %}
+                {{ node.nl2br ? node.content|raw|nl2br : node.content|raw }}
+            {% endautoescape %}
+        </div>
+    </div>
+{% endblock %}

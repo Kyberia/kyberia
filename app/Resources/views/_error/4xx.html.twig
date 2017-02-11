@@ -1,0 +1,15 @@
+{% extends '_layouts/main.html.twig' %}
+
+{% block content %}
+    <div class="error-page">
+        <h2 class="headline text-yellow"> {{ status_code }}</h2>
+
+        <div class="error-content">
+            <h3><i class="fa fa-warning text-yellow"></i> {{ status_text }}</h3>
+
+            {% block errorContent %}
+                <p>Oops! Something went wrong.</p>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -81,19 +81,19 @@ AppBundle\Entity\Mail:
                 default: 'no'
     manyToOne:
         user:
-            targetEntity: User
+            targetEntity: AppBundle\Entity\User
             inversedBy: mails
             joinColumn:
                 name: mail_user
                 referencedColumnName: user_id
         userFrom:
-            targetEntity: User
+            targetEntity: AppBundle\Entity\User
             joinColumn:
                 name: mail_from
                 referencedColumnName: user_id
             fetch: EAGER
         userTo:
-            targetEntity: User
+            targetEntity: AppBundle\Entity\User
             joinColumn:
                 name: mail_to
                 referencedColumnName: user_id

@@ -1,0 +1,206 @@
+AppBundle\Entity\Node:
+    type: entity
+    table: nodes
+    repositoryClass: AppBundle\Entity\Repository\NodeRepository
+    indexes:
+        node_name:
+            columns:
+                - node_name
+        node_created_node_vector_k:
+            columns:
+                - node_created
+                - node_vector
+                - k
+        template_id_node_creator:
+            columns:
+                - template_id
+                - node_creator
+        node_vector_template_id:
+            columns:
+                - node_vector
+                - template_id
+        node_creator_external_link:
+            columns:
+                - node_creator
+                - external_link
+        external_link:
+            columns:
+                - external_link
+        node_parent:
+            columns:
+                - node_parent
+        node_level3_node_vector:
+            columns:
+                - node_level3
+                - node_vector
+        pnc_nid_nc_np:
+            columns:
+                - parent_node_creator
+                - node_id
+                - node_creator
+                - node_parent
+        tpl_nid:
+            columns:
+                - template_id
+                - node_id
+    id:
+        id:
+            column: node_id
+            type: integer
+            nullable: false
+            id: true
+            options:
+                unsigned: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentId:
+            column: node_parent
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        name:
+            column: node_name
+            type: string
+            nullable: true
+            length: 132
+            options:
+                fixed: false
+        type:
+            column: node_type
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 1
+        templateId:
+            column: template_id
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        systemAccess:
+            column: node_system_access
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: 'public'
+        externalAccess:
+            column: node_external_access
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+                default: 'no'
+        childrenCount:
+            column: node_children_count
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 0
+        descendantCount:
+            column: node_descendant_count
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        k:
+            column: k
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 0
+        views:
+            column: node_views
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        externalLink:
+            column: external_link
+            type: string
+            nullable: true
+            length: 123
+            options:
+                fixed: false
+        vector:
+            column: node_vector
+            type: string
+            nullable: true
+            length: 230
+            options:
+                fixed: false
+        level3:
+            column: node_level3
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: 0
+        content:
+            column: node_content
+            type: text
+            nullable: true
+            length: 16777215
+            options:
+                fixed: false
+        nl2br:
+            column: nl2br
+            type: boolean
+            nullable: false
+            options:
+                default: 1
+        createdAt:
+            column: node_created
+            type: datetime
+            nullable: true
+        createdBy:
+            column: node_creator
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        parentCreatedBy:
+            column: parent_node_creator
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        updatedAt:
+            column: node_updated
+            type: datetime
+            nullable: true
+        lastChildCreatedAt:
+            column: lastchild_created
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        lastDescendantCreatedAt:
+            column: lastdescendant_created
+            type: datetime
+            nullable: true
+    oneToMany:
+        children:
+            targetEntity: AppBundle\Entity\Node
+            mappedBy: parent
+    manyToOne:
+        parent:
+            targetEntity: AppBundle\Entity\Node
+            inversedBy: children
+            joinColumn:
+                name: node_parent
+                referencedColumnName: node_id
+        createdByUser:
+            targetEntity: AppBundle\Entity\User
+            joinColumn:
+                name: node_creator
+                referencedColumnName: user_id
+    lifecycleCallbacks: {  }

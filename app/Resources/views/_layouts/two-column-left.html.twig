@@ -1,0 +1,12 @@
+{% extends '_layouts/main.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            {% block leftColumn %}{% endblock %}
+        </div>
+        <div class="col-sm-9">
+            {% block contentColumn %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
