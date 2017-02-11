@@ -61,7 +61,7 @@ services:
             - [setUserFromSecurityTokenStorage, ['@security.token_storage']]
     app.node:
         class: AppBundle\Service\NodeService
-        arguments: ['@doctrine.orm.entity_manager', '@app.permission']
+        arguments: ['@doctrine.orm.entity_manager', '@app.entity.repository.node', '@app.permission']
     app.permission:
         class: AppBundle\Service\PermissionService
         arguments: ['@security.authorization_checker']

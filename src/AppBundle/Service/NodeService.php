@@ -13,10 +13,17 @@ class NodeService
     /** @var NodeRepository */
     private $nodeRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
+    /** @var PermissionService */
+    private $permissionService;
+
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        NodeRepository $nodeRepository,
+        PermissionService $permissionService
+    ) {
         $this->entityManager = $entityManager;
-        $this->nodeRepository = $entityManager->getRepository(Node::class);
+        $this->nodeRepository = $nodeRepository;
+        $this->permissionService = $permissionService;
     }
 
     /**
@@ -51,5 +58,32 @@ class NodeService
         $this->entityManager->flush();
 
         return $node;
+    }
+
+    /**
+     * @param Node $node
+     *
+     * @return Node[]
+     */
+    public function getChildren(Node $node)
+    {
+        // Read permissions required for getting children
+        $this->permissionService->canViewNode($node);
+
+        $children = $node->getChildren();
+
+        return $children;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return Node[]
+     */
+    public function getChildrenById($id)
+    {
+        $node = $this->getNodeById($id);
+
+        return $this->getChildren($node);
     }
 }
