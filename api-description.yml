@@ -9,6 +9,18 @@ produces:
 schemes:
   - https
 paths:
+  /mail/new:
+      get:
+        description: |
+          Quick check for any new mail. Returns a simple `NewMail` collection.
+        responses:
+          200:
+            description: Successful response
+            schema:
+              type: array
+              items:
+                - $ref: '#/definitions/NewMail'
+
   /mail:
     get:
       description: |
@@ -99,6 +111,16 @@ paths:
 
 # definitions can be re-used as $ref types in payload defintions
 definitions:
+  NewMail:
+    type: object
+    properties:
+      userIdFrom:
+        type: integer
+      loginFrom:
+        type: string
+      excerpt:
+        type: string
+
   Mail:
     type: object
     properties:
