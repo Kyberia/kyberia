@@ -9,9 +9,7 @@ produces:
 schemes:
   - https
 paths:
-  /mails:
-    parameters:
-      - $ref: '#/parameters/token'
+  /mail:
     get:
       description: |
         Endpoint returns a collection of `Mail` objects.
@@ -19,7 +17,7 @@ paths:
         Query param **limit** specifies how many items
         should be returned.
 
-        Mail requources are returned for the `userId` associated with the `token` header.
+        Mail requources are returned for the `userId`.
       parameters:
         - $ref: '#/parameters/limit'
         - $ref: '#/parameters/offset'
@@ -62,20 +60,19 @@ paths:
       responses:
         200:
           description: OK
-  /mails/{id}:
+  /mail/{id}:
     get:
       description: |
         Retrieve one unique `mail` resource containing fields `content`, `sender` `receiver`
       parameters:
         - $ref: '#/parameters/id'
-        - $ref: '#/parameters/token'
       responses:
         200:
           description: OK
           schema:
             $ref: '#/definitions/Mail'
         401:
-          description: Unauthorized - missing or invalid `token`
+          description: Unauthorized
         404:
           description: Not found - resoruce with given `id`
     delete:
@@ -83,12 +80,11 @@ paths:
         Removes a given mail resource
       parameters:
         - $ref: '#/parameters/id'
-        - $ref: '#/parameters/token'
       responses:
         200:
           description: OK
         401:
-          description: Unauthorized - missing or invalid `token`
+          description: Unauthorized
         404:
           description: Not found - resoruce with given `id`
     put:
@@ -96,7 +92,6 @@ paths:
         Update a mail resource - mark as read
       parameters:
         - $ref: '#/parameters/id'
-        - $ref: '#/parameters/token'
       responses:
         200:
           description: OK
@@ -129,15 +124,6 @@ parameters:
     in: path
     name: id
     description: id of the resource
-    required: true
-    type: string
-    # a pattern can be specified as well like '[0-9a-zA-Z\-_]+'
-  token:
-    in: header
-    name: token
-    description: |
-      Authorization token
-    pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
     required: true
     type: string
   limit:
