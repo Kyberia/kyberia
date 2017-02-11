@@ -181,6 +181,6 @@ AppBundle\Entity\User:
                 fixed: false
     oneToMany:
         mails:
-          targetEntity: Mail
-          mappedBy: user
+            targetEntity: AppBundle\Entity\Mail
+            mappedBy: user
     lifecycleCallbacks: {  }
