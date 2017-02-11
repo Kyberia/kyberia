@@ -90,6 +90,15 @@ class Node extends AbstractEntity
 
     //region Association properties
 
+    /** @var Node */
+    protected $parent;
+
+    /** @var Node[] */
+    protected $children;
+
+    /** @var User */
+    protected $createdByUser;
+
     //endregion
 
     public function __construct()
@@ -359,6 +368,42 @@ class Node extends AbstractEntity
     //endregion
 
     //region Association methods
+
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    public function setParent(Node $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    public function addChildren(Node $child)
+    {
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    public function getCreatedByUser()
+    {
+        return $this->createdByUser;
+    }
+
+    public function setCreatedByUser(User $createdByUser)
+    {
+        $this->createdByUser = $createdByUser;
+
+        return $this;
+    }
 
     //endregion
 

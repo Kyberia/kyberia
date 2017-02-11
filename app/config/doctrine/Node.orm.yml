@@ -187,4 +187,20 @@ AppBundle\Entity\Node:
             column: lastdescendant_created
             type: datetime
             nullable: true
+    oneToMany:
+        children:
+            targetEntity: AppBundle\Entity\Node
+            mappedBy: parent
+    manyToOne:
+        parent:
+            targetEntity: AppBundle\Entity\Node
+            inversedBy: children
+            joinColumn:
+                name: node_parent
+                referencedColumnName: node_id
+        createdByUser:
+            targetEntity: AppBundle\Entity\User
+            joinColumn:
+                name: node_creator
+                referencedColumnName: user_id
     lifecycleCallbacks: {  }
