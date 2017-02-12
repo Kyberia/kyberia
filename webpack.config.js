@@ -4,6 +4,7 @@ const { getIfUtils, removeEmpty } = require('webpack-config-utils');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin')
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = (env) => {
     const { ifProd, ifNotProd } = getIfUtils(env);
@@ -110,6 +111,7 @@ module.exports = (env) => {
             ]
         },
         plugins: removeEmpty([
+            new WriteFilePlugin(),
             ifProd(new ExtractTextPlugin({
                 filename: 'css/[name].[contenthash].css',
                 allChunks: true,
