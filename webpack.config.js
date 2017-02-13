@@ -3,7 +3,7 @@ const { join, resolve } = require('path');
 const { getIfUtils, removeEmpty } = require('webpack-config-utils');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin')
-const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = (env) => {
@@ -13,15 +13,7 @@ module.exports = (env) => {
         context: resolve(__dirname, './app/Resources/assets'),
         devtool: ifProd('source-map', 'cheap-module-source-map'),
         entry: {
-            main: './main.js',
-            vendor: [
-                'admin-lte',
-                'bootstrap',
-                'fastclick',
-                'holderjs',
-                'jquery-slimscroll',
-                'jquery',
-            ]
+            main: './main.js'
         },
         output: {
             path: resolve(__dirname, './web'),
@@ -111,7 +103,14 @@ module.exports = (env) => {
             ]
         },
         plugins: removeEmpty([
+            // write files to fs with webpack-dev-server
             new WriteFilePlugin(),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                fileName: 'vendor.js',
+                chunks: ['main'],
+                minChunks: module => /node_modules\//.test(module.resource)
+            }),
             ifProd(new ExtractTextPlugin({
                 filename: 'css/[name].[contenthash].css',
                 allChunks: true,
