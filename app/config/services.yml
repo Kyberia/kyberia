@@ -65,3 +65,6 @@ services:
     app.permission:
         class: AppBundle\Service\PermissionService
         arguments: ['@security.authorization_checker']
+    app.user:
+        class: AppBundle\Service\UserService
+        arguments: ['@app.entity.repository.user']
