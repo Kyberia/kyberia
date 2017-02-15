@@ -43,28 +43,19 @@ module.exports = (env) => {
                     // The point is that they remain in global scope.
                     test: /\.css$/,
                     include: /node_modules/,
-                    loader: ifNotProd(
-                        [
-                            'style-loader',
+                    loader: ExtractTextPlugin.extract({
+                        fallbackLoader: 'style-loader',
+                        loader: [
                             {
                                 loader: 'css-loader',
-                                query: { sourceMap: true, }
+                                // @TODO replace with "options" when ExtractTextPlugin is fixed
+                                query: {
+                                    minimize: true,
+                                }
                             }
                         ],
-                        ExtractTextPlugin.extract({
-                            fallbackLoader: 'style-loader',
-                            loader: [
-                                {
-                                    loader: 'css-loader',
-                                    // @TODO replace with "options" when ExtractTextPlugin is fixed
-                                    query: {
-                                        minimize: true,
-                                    }
-                                }
-                            ],
 
-                        })
-                    )
+                    })
                 },
                 {
                     test: /\.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
@@ -111,10 +102,10 @@ module.exports = (env) => {
                 chunks: ['main'],
                 minChunks: module => /node_modules\//.test(module.resource)
             }),
-            ifProd(new ExtractTextPlugin({
-                filename: 'css/[name].[contenthash].css',
+            new ExtractTextPlugin({
+                filename: ifProd('css/[name].[contenthash].css', 'css/[name].css'),
                 allChunks: true,
-            })),
+            }),
             ifProd(
                 new AssetsPlugin({ path: join(__dirname, 'web', 'bundles') })
             ),

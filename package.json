@@ -5,6 +5,7 @@
     "private": true,
     "scripts": {
         "start": "webpack-dev-server --env.dev",
+        "build:dev": "webpack --env.dev",
         "build:prod": "webpack --env.prod"
     },
     "dependencies": {
