@@ -36,6 +36,13 @@ services:
         # small performance boost
         public: false
 
+    # Twig
+    app.twig.extension:
+        class: AppBundle\Twig\AppExtension
+        arguments: ['@app.user']
+        tags:
+            - { name: twig.extension }
+
     # Entity Repositories
     app.entity.repository.mail:
         class: AppBundle\Entity\Repository\MailRepository
