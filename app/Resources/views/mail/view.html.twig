@@ -24,9 +24,9 @@
                                 <span class="direct-chat-name {{ mail.isSent ? 'pull-left' : 'pull-right' }}">
                                     {{ mailUser.username }}
                                 </span>
-                                <span class="direct-chat-timestamp {{ mail.isSent ? 'pull-right' : 'pull-left' }}">
+                                <time class="direct-chat-timestamp {{ mail.isSent ? 'pull-right' : 'pull-left' }}" datetime="{{ mail.createdAt|date('U') }}" title="{{ mail.createdAt|date }}">
                                     {{ mail.createdAt|time_diff }}
-                                </span>
+                                </time>
                             </div>
                             <img class="direct-chat-img" src="holder.js/40x40" alt="message user image">
                             <div class="direct-chat-text">

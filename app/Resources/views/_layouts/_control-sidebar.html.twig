@@ -8,7 +8,9 @@
                         <div class="menu-info">
                             <h4 class="control-sidebar-subheading">{{ activeUser.username }}</h4>
                             <p>
-                                <time datetime="{{ activeUser.lastAction|date('U') }}">{{ activeUser.lastAction|time_diff }}</time>
+                                <time datetime="{{ activeUser.lastAction|date('U') }}" title="{{ activeUser.lastAction|date }}">
+                                    {{ activeUser.lastAction|time_diff }}
+                                </time>
                             </p>
                         </div>
                     </a>
