@@ -18,6 +18,9 @@ class Node extends AbstractEntity
     const EXTERNAL_ACCESS_NO    = 'no';
     const EXTERNAL_ACCESS_YES   = 'yes';
 
+    const EXTERNAL_LINK_FRIEND  = 'session://friend';
+    const EXTERNAL_LINK_USER    = 'db://user';
+
     //region Column properties
 
     /** @var integer */

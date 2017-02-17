@@ -2,26 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}kyberia.sk{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     {% block headStyles %}
-        {% block stylesheets %}{% endblock %}
-
-        {# TODO fix webpack
-        {% set cssUrl = webpack_asset('@app/main.js', 'css') %}
-        {% if cssUrl %}
-            <link rel="stylesheet" href="{{ cssUrl }}"/>
-        {% endif %}
-        #}
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     {% endblock %}
 
     {% block headScripts %}
@@ -31,8 +20,8 @@
     {% block body %}{% endblock %}
 
     {% block bodyScripts %}
-        {% block javascripts %}{% endblock %}
-        <script src="/js/main.bundle.js"></script>
+        <script src="{{ asset('js/vendor.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
     {% endblock %}
 </body>
 </html>

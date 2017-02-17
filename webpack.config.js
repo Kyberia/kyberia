@@ -3,7 +3,8 @@ const { join, resolve } = require('path');
 const { getIfUtils, removeEmpty } = require('webpack-config-utils');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin')
-const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = (env) => {
     const { ifProd, ifNotProd } = getIfUtils(env);
@@ -12,15 +13,7 @@ module.exports = (env) => {
         context: resolve(__dirname, './app/Resources/assets'),
         devtool: ifProd('source-map', 'cheap-module-source-map'),
         entry: {
-            main: './main.js',
-            vendor: [
-                'admin-lte',
-                'bootstrap',
-                'fastclick',
-                'holderjs',
-                'jquery-slimscroll',
-                'jquery',
-            ]
+            main: './main.js'
         },
         output: {
             path: resolve(__dirname, './web'),
@@ -50,28 +43,33 @@ module.exports = (env) => {
                     // The point is that they remain in global scope.
                     test: /\.css$/,
                     include: /node_modules/,
-                    loader: ifNotProd(
-                        [
-                            'style-loader',
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: ifProd(),
+                                sourceMap: true
+                            }
+                        }
+                    })
+                },
+                {
+                    test: /\.scss$/i,
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: [
                             {
                                 loader: 'css-loader',
-                                query: { sourceMap: true, }
-                            }
-                        ],
-                        ExtractTextPlugin.extract({
-                            fallbackLoader: 'style-loader',
-                            loader: [
-                                {
-                                    loader: 'css-loader',
-                                    // @TODO replace with "options" when ExtractTextPlugin is fixed
-                                    query: {
-                                        minimize: true,
-                                    }
+                                options: {
+                                    minimize: ifProd(),
+                                    sourceMap: true
                                 }
-                            ],
-
-                        })
-                    )
+                            }, {
+                                loader: 'sass-loader'
+                            }
+                        ]
+                    })
                 },
                 {
                     test: /\.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
@@ -110,10 +108,18 @@ module.exports = (env) => {
             ]
         },
         plugins: removeEmpty([
-            ifProd(new ExtractTextPlugin({
-                filename: 'css/[name].[contenthash].css',
+            // write files to fs with webpack-dev-server
+            new WriteFilePlugin(),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                fileName: 'vendor.js',
+                chunks: ['main'],
+                minChunks: module => /node_modules\//.test(module.resource)
+            }),
+            new ExtractTextPlugin({
+                filename: ifProd('css/[name].[contenthash].css', 'css/[name].css'),
                 allChunks: true,
-            })),
+            }),
             ifProd(
                 new AssetsPlugin({ path: join(__dirname, 'web', 'bundles') })
             ),
@@ -124,10 +130,6 @@ module.exports = (env) => {
                 },
                 output: { comments: false }
             })),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: Infinity,
-            }),
             new ProgressBarPlugin(),
         ]),
     };

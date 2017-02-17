@@ -1,6 +1,23 @@
 <aside class="control-sidebar control-sidebar-dark">
-    <!-- Content of the sidebar goes here -->
+    <div class="tab-content">
+        <ul class="control-sidebar-menu">
+            {% for activeUser in friends_online(app.user.id) %}
+                <li>
+                    <a href="{{ path('node.view', {id: activeUser.id}) }}">
+                        <img data-src="holder.js/35x35" class="menu-icon" alt="{{ activeUser.username }}">
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">{{ activeUser.username }}</h4>
+                            <p>
+                                <time datetime="{{ activeUser.lastAction|date('U') }}" title="{{ activeUser.lastAction|date }}">
+                                    {{ activeUser.lastAction|time_diff }}
+                                </time>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </aside>
-<!-- The sidebar's background -->
-<!-- This div must placed right after the sidebar for it to work-->
+{# The sidebar's background. This div must placed right after the sidebar for it to work #}
 <div class="control-sidebar-bg"></div>

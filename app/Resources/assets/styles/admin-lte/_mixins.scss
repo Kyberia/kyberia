@@ -1,0 +1,283 @@
+//
+// AdminLTE mixins
+// ===============
+
+// Changes the color and the hovering properties of the navbar
+@mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
+    background-color: $color;
+
+    // Navbar links
+    .nav > li > a {
+        color: $font-color;
+    }
+
+    .nav > li > a:hover,
+    .nav > li > a:active,
+    .nav > li > a:focus,
+    .nav .open > a,
+    .nav .open > a:hover,
+    .nav .open > a:focus,
+    .nav > .active > a {
+        background: $hover-bg;
+        color: $hover-color;
+    }
+
+    // Add color to the sidebar toggle button
+    .sidebar-toggle {
+        color: $font-color;
+
+        &:hover {
+            background: $hover-bg;
+            color: $hover-color;
+        }
+    }
+}
+
+// Logo color variation
+@mixin logo-variant($bg-color, $color: #fff, $border-bottom-color: transparent, $border-bottom-width: 0) {
+    background-color: $bg-color;
+    border-bottom: $border-bottom-width solid $border-bottom-color;
+    color: $color;
+
+    &:hover {
+        background-color: darken($bg-color, 1%);
+    }
+}
+
+// Dark Sidebar Mixin
+@mixin skin-dark-sidebar($link-hover-border-color) {
+    // Sidebar background color (Both .wrapper and .left-side are responsible for sidebar bg color)
+    .wrapper,
+    .main-sidebar,
+    .left-side {
+        background-color: $sidebar-dark-bg;
+    }
+
+    // User Panel (resides in the sidebar)
+    .user-panel {
+        > .info,
+        > .info > a {
+            color: #fff;
+        }
+    }
+
+    //Sidebar Menu. First level links
+    .sidebar-menu > li {
+        // Section Heading
+        &.header {
+            color: lighten($sidebar-dark-bg, 20%);
+            background: darken($sidebar-dark-bg, 4%);
+        }
+
+        // links
+        > a {
+            border-left: 3px solid transparent;
+        }
+
+        // Hover and active states
+        &:hover > a,
+        &.active > a {
+            background: $sidebar-dark-hover-bg;
+            border-left-color: $link-hover-border-color;
+            color: $sidebar-dark-hover-color;
+        }
+
+        // First Level Submenu
+        > .treeview-menu {
+            background: $sidebar-dark-submenu-bg;
+            margin: 0 1px;
+        }
+    }
+
+    // All links within the sidebar menu
+    .sidebar a {
+        color: $sidebar-dark-color;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    // All submenus
+    .treeview-menu {
+        > li {
+            > a {
+                color: $sidebar-dark-submenu-color;
+            }
+
+            > a:hover,
+            &.active > a {
+                color: $sidebar-dark-submenu-hover-color;
+            }
+        }
+    }
+
+    // The sidebar search form
+    .sidebar-form {
+        border: 1px solid lighten($sidebar-dark-bg, 10%);
+        border-radius: 3px;
+        margin: 10px 10px;
+
+        .btn,
+        input[type="text"] {
+            background-color: lighten($sidebar-dark-bg, 10%);
+            border: 1px solid transparent;
+            box-shadow: none;
+            height: 35px;
+        }
+
+        input[type="text"] {
+            border-radius: 2px 0 2px 0;
+            color: #666;
+
+            &:focus,
+            &:focus + .input-group-btn .btn {
+                background-color: #fff;
+                color: #666;
+            }
+
+            &:focus + .input-group-btn .btn {
+                border-left-color: #fff;
+            }
+        }
+
+        .btn {
+            border-radius: 0 2px 0 2px;
+            color: #999;
+        }
+    }
+}
+
+//Light Sidebar Mixin
+@mixin skin-light-sidebar($icon-active-color) {
+    // Sidebar background color (Both .wrapper and .left-side are responsible for sidebar bg color)
+    .wrapper,
+    .main-sidebar,
+    .left-side {
+        background-color: $sidebar-light-bg;
+    }
+
+    .content-wrapper,
+    .main-footer {
+        border-left: 1px solid $gray-lte;
+    }
+
+    // User Panel (resides in the sidebar)
+    .user-panel {
+        > .info,
+        > .info > a {
+            color: $sidebar-light-color;
+        }
+    }
+
+    // Sidebar Menu. First level links
+    .sidebar-menu > li {
+        //.transition(border-left-color .3s ease);
+
+        // Section Headning
+        &.header {
+            background: $sidebar-light-bg;
+            color: lighten($sidebar-light-color, 25%);
+        }
+
+        // links
+        > a {
+            border-left: 3px solid transparent;
+            font-weight: 600;
+        }
+
+        //Hover and active states
+        &:hover > a,
+        &.active > a {
+            background: $sidebar-light-hover-bg;
+            color: $sidebar-light-hover-color;
+        }
+
+        &:hover > a {
+
+        }
+
+        &.active {
+            border-left-color: $icon-active-color;
+
+            > a {
+                font-weight: 600;
+            }
+        }
+
+        // First Level Submenu
+        > .treeview-menu {
+            background: $sidebar-light-submenu-bg;
+        }
+    }
+
+    // All links within the sidebar menu
+    .sidebar a {
+        color: $sidebar-light-color;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    // All submenus
+    .treeview-menu {
+        > li {
+            > a {
+                color: $sidebar-light-submenu-color;
+            }
+
+            > a:hover,
+            &.active > a {
+                color: $sidebar-light-submenu-hover-color;
+            }
+
+            &.active > a {
+                font-weight: 600;
+            }
+        }
+    }
+
+    // The sidebar search form
+    .sidebar-form {
+        border: 1px solid $gray-lte;
+        border-radius: 3px;
+        margin: 10px 10px;
+
+        .btn,
+        input[type="text"] {
+            background-color: #fff;
+            border: 1px solid transparent;
+            box-shadow: none;
+            height: 35px;
+        }
+
+        input[type="text"] {
+            color: #666;
+            border-radius: 2px 0 2px 0;
+
+            &:focus,
+            &:focus + .input-group-btn .btn {
+                background-color: #fff;
+                color: #666;
+            }
+
+            &:focus + .input-group-btn .btn {
+                border-left-color: #fff;
+            }
+        }
+
+        .btn {
+            border-radius: 0 2px 0 2px;
+            color: #999;
+        }
+    }
+
+    @media (min-width: $screen-sm-min) {
+        &.sidebar-mini.sidebar-collapse {
+            .sidebar-menu > li > .treeview-menu {
+                border-left: 1px solid $gray-lte;
+            }
+        }
+    }
+}

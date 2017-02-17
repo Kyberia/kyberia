@@ -1,0 +1,48 @@
+AppBundle\Entity\UserRelation:
+    type: entity
+    table: user_relation
+    indexes:
+        user_id_relation_type:
+            columns:
+                - user_id
+                - relation_type
+        node_id_relation_type:
+            columns:
+                - node_id
+                - relation_type
+    uniqueConstraints:
+        user_id_node_id_relation_type:
+            columns:
+                - user_id
+                - node_id
+                - relation_type
+    id:
+        id:
+            column: user_relation_id
+            type: integer
+            nullable: false
+            id: true
+            options:
+                unsigned: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            column: user_id
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        nodeId:
+            column: node_id
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        type:
+            column: relation_type
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,62 @@
+/*!
+ * Skin: Kyberia
+ * -------------
+ */
+
+.skin-kyberia {
+    body,
+    .content-wrapper {
+        background-color: $black;
+    }
+
+    //Navbar
+    .main-header {
+        .navbar {
+            @include navbar-variant($gray-darker, #fff);
+
+            .sidebar-toggle,
+            .navbar-nav > li > a {
+                color: #fff;
+
+                &:hover {
+                    background-color: $green;
+                }
+            }
+
+            @media (max-width: $screen-header-collapse) {
+                .dropdown-menu {
+                    li {
+                        &.divider {
+                            background-color: rgba(255, 255, 255, 0.1);
+                        }
+
+                        a {
+                            color: #fff;
+
+                            &:hover {
+                                background: $green;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Logo
+        .logo {
+            @include logo-variant($green);
+        }
+
+        li.user-header {
+            background-color: $green;
+        }
+    }
+
+    //Content Header
+    .content-header {
+        background: transparent;
+    }
+
+    //Create the sidebar skin
+    @include skin-dark-sidebar($green);
+}

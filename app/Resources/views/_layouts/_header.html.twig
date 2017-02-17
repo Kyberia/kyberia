@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
                 <!-- Messages -->
                 <li class="messages-menu">
-                    <a href="{{ path('mail.index') }}">
+                    <a href="{{ path('mail.index') }}" title="Mail">
                         <i class="fa fa-envelope"></i>
                         {% if app.user.mailCount > 0 %}
                             <span class="label label-info">{{ app.user.mailCount }}</span>
@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <!-- Right sidebar toggle button -->
-                <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-users"></i></a></li>
+                <li><a href="#" data-toggle="control-sidebar" title="Online friends"><i class="fa fa-users"></i></a></li>
                 <!-- User menu -->
                 <li class="user-menu dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -32,7 +32,7 @@
                         <span class="hidden-xs">{{ app.user.username }}</span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+                        <li><a href="{{ path('node.view', {id: app.user.id}) }}"><i class="fa fa-fw fa-user"></i> Profile</a></li>
                         <li><a href="#"><i class="fa fa-fw fa-cog"></i>Settings</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ logout_path() }}"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li>
