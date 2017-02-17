@@ -44,17 +44,31 @@ module.exports = (env) => {
                     test: /\.css$/,
                     include: /node_modules/,
                     loader: ExtractTextPlugin.extract({
-                        fallbackLoader: 'style-loader',
-                        loader: [
+                        fallback: 'style-loader',
+                        use: {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: ifProd(),
+                                sourceMap: true
+                            }
+                        }
+                    })
+                },
+                {
+                    test: /\.scss$/i,
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: [
                             {
                                 loader: 'css-loader',
-                                // @TODO replace with "options" when ExtractTextPlugin is fixed
-                                query: {
-                                    minimize: true,
+                                options: {
+                                    minimize: ifProd(),
+                                    sourceMap: true
                                 }
+                            }, {
+                                loader: 'sass-loader'
                             }
-                        ],
-
+                        ]
                     })
                 },
                 {
@@ -116,10 +130,6 @@ module.exports = (env) => {
                 },
                 output: { comments: false }
             })),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: Infinity,
-            }),
             new ProgressBarPlugin(),
         ]),
     };

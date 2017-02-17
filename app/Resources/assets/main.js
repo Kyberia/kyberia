@@ -16,6 +16,8 @@ require('font-awesome/css/font-awesome.min.css');
 require('holderjs');
 require('jquery-slimscroll');
 
+require('./styles/main.scss');
+
 // Fastclick prevents the 300ms touch delay on touch devices
 var attachFastClick = require('fastclick');
 attachFastClick.attach(document.body);
