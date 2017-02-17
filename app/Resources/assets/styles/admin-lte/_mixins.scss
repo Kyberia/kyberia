@@ -149,7 +149,7 @@
 }
 
 //Light Sidebar Mixin
-.skin-light-sidebar($icon-active-color) {
+@mixin skin-light-sidebar($icon-active-color) {
     // Sidebar background color (Both .wrapper and .left-side are responsible for sidebar bg color)
     .wrapper,
     .main-sidebar,
