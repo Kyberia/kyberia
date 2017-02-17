@@ -4,15 +4,22 @@
  */
 
 .skin-kyberia {
+    body,
+    .content-wrapper {
+        background-color: $black;
+    }
+
     //Navbar
     .main-header {
         .navbar {
-            @include navbar-variant($green, #fff);
+            @include navbar-variant($gray-darker, #fff);
 
-            .sidebar-toggle {
+            .sidebar-toggle,
+            .navbar-nav > li > a {
                 color: #fff;
+
                 &:hover {
-                    background-color: darken($green, 5%);
+                    background-color: $green;
                 }
             }
 
@@ -22,10 +29,12 @@
                         &.divider {
                             background-color: rgba(255, 255, 255, 0.1);
                         }
+
                         a {
                             color: #fff;
+
                             &:hover {
-                                background: darken($green, 5%);
+                                background: $green;
                             }
                         }
                     }
@@ -33,9 +42,9 @@
             }
         }
 
-        //Logo
+        // Logo
         .logo {
-            @include logo-variant(darken($green, 5%));
+            @include logo-variant($green);
         }
 
         li.user-header {
