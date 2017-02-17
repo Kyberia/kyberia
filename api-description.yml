@@ -1,166 +1,166 @@
 swagger: '2.0'
 info:
-  version: "1.0.0"
-  title: Kyberia.sk REST API
+    version: "1.0.0"
+    title: Kyberia.sk REST API
 host: api.kyberia.sk
 basePath: /
 produces:
-  - applications/json
+    - applications/json
 schemes:
-  - https
+    - https
 paths:
-  /mail/new:
-      get:
-        description: |
-          Quick check for any new mail. Returns a simple `NewMail` collection.
-        responses:
-          200:
-            description: Successful response
-            schema:
-              type: array
-              items:
-                - $ref: '#/definitions/NewMail'
+    /mail/new:
+            get:
+                description: |
+                    Quick check for any new mail. Returns a simple `NewMail` collection.
+                responses:
+                    200:
+                        description: Successful response
+                        schema:
+                            type: array
+                            items:
+                                - $ref: '#/definitions/NewMail'
 
-  /mail:
-    get:
-      description: |
-        Endpoint returns a collection of `Mail` objects.
+    /mail:
+        get:
+            description: |
+                Endpoint returns a collection of `Mail` objects.
 
-        Query param **limit** specifies how many items
-        should be returned.
+                Query param **limit** specifies how many items
+                should be returned.
 
-        Mail requources are returned for the `userId`.
-      parameters:
-        - $ref: '#/parameters/limit'
-        - $ref: '#/parameters/offset'
-        - in: query
-          description: |-
-            Search query like `searchTerm` `receiver` `dateSent`
-          name: q
-          required: false
-          type: string
-      responses:
-        # Response code
-        200:
-          description: Successful response
-          # A schema describing your response object.
-          # Use JSON Schema format
-          schema:
-            title: ArrayOfMail
-            type: array
-            items:
-              - $ref: '#/definitions/Mail'
-    post:
-      description: |
-        Create a new mail resource
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: Mail
-          required: true
-          schema:
-            type: object
-            properties:
-              content:
-                type: string
-                default: 'Lorem Impsum'
-              receiver:
-                type: string
-                default: '7777 or userName'
+                Mail requources are returned for the `userId`.
+            parameters:
+                - $ref: '#/parameters/limit'
+                - $ref: '#/parameters/offset'
+                - in: query
+                    description: |-
+                        Search query like `searchTerm` `receiver` `dateSent`
+                    name: q
+                    required: false
+                    type: string
+            responses:
+                # Response code
+                200:
+                    description: Successful response
+                    # A schema describing your response object.
+                    # Use JSON Schema format
+                    schema:
+                        title: ArrayOfMail
+                        type: array
+                        items:
+                            - $ref: '#/definitions/Mail'
+        post:
+            description: |
+                Create a new mail resource
+            produces:
+                - application/json
+            parameters:
+                - in: body
+                    name: Mail
+                    required: true
+                    schema:
+                        type: object
+                        properties:
+                            content:
+                                type: string
+                                default: 'Lorem Impsum'
+                            receiver:
+                                type: string
+                                default: '7777 or userName'
 
-      responses:
-        200:
-          description: OK
-  /mail/{id}:
-    get:
-      description: |
-        Retrieve one unique `mail` resource containing fields `content`, `sender` `receiver`
-      parameters:
-        - $ref: '#/parameters/id'
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Mail'
-        401:
-          description: Unauthorized
-        404:
-          description: Not found - resoruce with given `id`
-    delete:
-      description: |
-        Removes a given mail resource
-      parameters:
-        - $ref: '#/parameters/id'
-      responses:
-        200:
-          description: OK
-        401:
-          description: Unauthorized
-        404:
-          description: Not found - resoruce with given `id`
-    put:
-      description: |
-        Update a mail resource - mark as read
-      parameters:
-        - $ref: '#/parameters/id'
-      responses:
-        200:
-          description: OK
+            responses:
+                200:
+                    description: OK
+    /mail/{id}:
+        get:
+            description: |
+                Retrieve one unique `mail` resource containing fields `content`, `sender` `receiver`
+            parameters:
+                - $ref: '#/parameters/id'
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        $ref: '#/definitions/Mail'
+                401:
+                    description: Unauthorized
+                404:
+                    description: Not found - resoruce with given `id`
+        delete:
+            description: |
+                Removes a given mail resource
+            parameters:
+                - $ref: '#/parameters/id'
+            responses:
+                200:
+                    description: OK
+                401:
+                    description: Unauthorized
+                404:
+                    description: Not found - resoruce with given `id`
+        put:
+            description: |
+                Update a mail resource - mark as read
+            parameters:
+                - $ref: '#/parameters/id'
+            responses:
+                200:
+                    description: OK
 
 
 # definitions can be re-used as $ref types in payload defintions
 definitions:
-  NewMail:
-    type: object
-    properties:
-      userIdFrom:
-        type: integer
-      loginFrom:
-        type: string
-      excerpt:
-        type: string
+    NewMail:
+        type: object
+        properties:
+            userIdFrom:
+                type: integer
+            loginFrom:
+                type: string
+            excerpt:
+                type: string
 
-  Mail:
-    type: object
-    properties:
-      duplicateId:
-        type: integer
-      userId:
-        type: integer
-      userIdFrom:
-        type: integer
-      userIdTo:
-        type: integer
-      text:
-        type: string
-      createdAt:
-        type: string
-        format: date
-      isRead:
-        type: string
-        default: 'no'
+    Mail:
+        type: object
+        properties:
+            duplicateId:
+                type: integer
+            userId:
+                type: integer
+            userIdFrom:
+                type: integer
+            userIdTo:
+                type: integer
+            text:
+                type: string
+            createdAt:
+                type: string
+                format: date
+            isRead:
+                type: string
+                default: 'no'
 
 parameters:
-  id:
-    in: path
-    name: id
-    description: id of the resource
-    required: true
-    type: string
-  limit:
-    name: limit
-    in: query
-    description: Amount of intems in response
-    required: true
-    type: number
-    format: int32
-    default: 25
-  offset:
-    name: offset
-    in: query
-    description: Offset from collection start
-    required: false
-    type: number
-    format: int32
-    default: 0
+    id:
+        in: path
+        name: id
+        description: id of the resource
+        required: true
+        type: string
+    limit:
+        name: limit
+        in: query
+        description: Amount of intems in response
+        required: true
+        type: number
+        format: int32
+        default: 25
+    offset:
+        name: offset
+        in: query
+        description: Offset from collection start
+        required: false
+        type: number
+        format: int32
+        default: 0
