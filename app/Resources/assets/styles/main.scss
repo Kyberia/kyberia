@@ -2,8 +2,12 @@
  * Kyberia
  */
 
-@import 'variables';
+// Vendor
+@import 'admin-lte/variables';
 @import 'admin-lte/mixins';
 
-// AdminLTE Skins
+// Core
+@import 'variables';
+
+// Skins
 @import 'skins/kyberia';
