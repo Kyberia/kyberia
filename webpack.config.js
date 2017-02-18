@@ -73,7 +73,7 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-                    use: 'file-loader?name=fonts/[name].[hash].[ext]'
+                    use: 'file-loader?&publicPath=../fonts/&outputPath=fonts/&name=[name].[hash].[ext]'
                 },
                 {
                     test: /\.(gif|png|jpe?g|svg)$/i,
@@ -108,6 +108,11 @@ module.exports = (env) => {
             ]
         },
         plugins: removeEmpty([
+            new webpack.LoaderOptionsPlugin({
+                options: {
+                    context: join(__dirname, 'web')
+                }
+            }),
             // write files to fs with webpack-dev-server
             new WriteFilePlugin(),
             new webpack.optimize.CommonsChunkPlugin({

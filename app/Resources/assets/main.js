@@ -1,6 +1,6 @@
 require('expose-loader?$!expose-loader?jQuery!jquery');
 
-// Bootstrap & bootstrap-webpack
+// Bootstrap
 require('bootstrap/dist/css/bootstrap.min.css');
 require('bootstrap');
 
