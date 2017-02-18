@@ -32,7 +32,8 @@
         "symfony/monolog-bundle": "~3.0.3",
         "symfony/polyfill-apcu": "~1.3.0",
         "symfony/swiftmailer-bundle": "~2.4.2",
-        "symfony/symfony": "~3.2.2"
+        "symfony/symfony": "~3.2.2",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.1.2",
