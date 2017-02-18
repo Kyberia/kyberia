@@ -92,11 +92,3 @@ knp_menu:
         builder_alias: false
         builder_service: true
         container_aware: false
-
-# Webpack Bundle
-# https://github.com/mariusbalcytis/webpack-bundle
-maba_webpack:
-    config:
-        parameters:
-            # Use the ExtractTextPlugin to load our CSS in our <head>
-            extract_css: true
