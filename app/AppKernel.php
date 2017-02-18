@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new DMS\Bundle\TwigExtensionBundle\DMSTwigExtensionBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Maba\Bundle\WebpackBundle\MabaWebpackBundle(),
             new AppBundle\AppBundle(),
         ];
 

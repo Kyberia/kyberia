@@ -107,11 +107,13 @@ Shell access to an already running container can be obtained by typing
 
 ## Webpack
 
-  * using [Webpack2](https://webpack.js.org/)
-  * 2 profiles
-    * `dev` supports dev-server via `npm start`
-    * `prod` creates the production bundle output in `<rootDir>/web`
- 
+  * this projects uses [Webpack2](https://webpack.js.org/) loading & bundling front-end assets (js, css, fonts, images, etc)
+  * outputs bundles to destination directory `<rootDir>/web` + folder based on bundle type
+  * 3 profiles
+    * `npm start` will run [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+    * `npm run build:dev` creates development bundles - non-minified, without hashes 
+    * `npm run build:prod` creates production bundles
+
 ## Swagger 
 
   * Kyberia API is described in `api-description.yml` file
