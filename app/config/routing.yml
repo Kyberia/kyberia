@@ -12,3 +12,7 @@ login:
 logout:
     path: /logout
     methods: [ get, post ]
+
+api:
+    resource: '@AppBundle/Controller/Api/'
+    type:     annotation

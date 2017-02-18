@@ -8,6 +8,8 @@ use AppBundle\Security\AuthenticatedUserAwareInterface;
 use AppBundle\Security\AuthenticatedUserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class MailService implements AuthenticatedUserAwareInterface
 {
     use AuthenticatedUserAwareTrait;
@@ -27,15 +29,26 @@ class MailService implements AuthenticatedUserAwareInterface
     /**
      * @return Mail[]
      */
-    public function getConversationList()
+    public function getConversationList(array $options = array())
     {
+        $resolver = new OptionsResolver();
+        $resolver->setDefaults(array(
+            'onlyNew' => false
+        ));
+        $opts = $resolver->resolve($options);
+
         $userId = $this->authenticatedUser->getId();
         $lastMailIds = array_column($this->mailRepository->getAllLastMailIdAndRecipientUserId($userId), 'lastMailId');
 
-        $mails = $this->mailRepository->findBy([
+        $criteria = [
             'userId' => $userId,
-            'id' => $lastMailIds,
-        ], ['id' => 'DESC']);
+            'id' => $lastMailIds
+        ];
+
+        if ($opts['onlyNew'] === true)
+            $criteria['isRead'] = 'no';
+
+        $mails = $this->mailRepository->findBy($criteria, ['id' => 'DESC']);
 
         return $mails;
     }
@@ -115,6 +128,15 @@ class MailService implements AuthenticatedUserAwareInterface
         });
 
         return $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function countUnreadMail() {
+        $userId = $this->authenticatedUser->getId();
+
+        return $this->mailRepository->countUnreadMail($userId);
     }
 
     /**
