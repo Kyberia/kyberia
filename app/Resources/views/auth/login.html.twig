@@ -7,35 +7,32 @@
         <div class="login-logo">Login</div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            {# TODO twig form #}
-            <form action="{{ path('login') }}" method="post">
+            {{ form_start(form) }}
                 {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert alert-error">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
                 {% endif %}
 
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" id="username" name="_username" placeholder="Username" value="{{ last_username }}">
+                <div class="form-group has-feedback {% if form.login.errors is defined %}has-error{% endif %}">
+                    {{ form_widget(form.username, {'attr': {'placeholder': 'Login'}}) }}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    {{ form_errors(form.username) }}
                 </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" id="password" name="_password" placeholder="Password">
+                <div class="form-group has-feedback {% if form.password.errors is defined %}has-error{% endif %}">
+                    {{ form_widget(form.password, {'attr': {'placeholder': 'Password'}}) }}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    {{ form_errors(form.password) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.type) }}
                 </div>
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
-                        </div>
+                    <div class="col-xs-6 col-xs-offset-6">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-block btn-flat'}}) }}
                     </div>
-                    <!-- /.col -->
-                    <div class="col-xs-6">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
-                    </div>
-                    <!-- /.col -->
                 </div>
-            </form>
+            {{ form_end(form) }}
 
             {# TODO
             <a href="{{ path('forgot_password') }}">I forgot my password</a><br>
