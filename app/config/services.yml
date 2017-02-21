@@ -28,7 +28,13 @@ services:
         arguments:
             memcached: '@session.memcached'
             options: { prefix: '%session_memcached_prefix%', expiretime: '%session_memcached_expire%' }
-    # Security voters
+    # Security
+    app.security.form_authenticator:
+        class: AppBundle\Security\FormAuthenticator
+        arguments: ['@form.factory', '@router', '@app.user']
+    app.security.form_user_provider:
+        class: AppBundle\Security\FormUserProvider
+        arguments: ['@app.user']
     app.security.node_voter:
         class: AppBundle\Security\NodeVoter
         tags:
