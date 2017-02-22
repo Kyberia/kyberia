@@ -41,6 +41,8 @@ services:
             - { name: security.voter }
         # small performance boost
         public: false
+    app.security.salted_sha_encoder:
+        class: AppBundle\Security\Encoder\SaltedShaPasswordEncoder
 
     # Twig
     app.twig.extension:
