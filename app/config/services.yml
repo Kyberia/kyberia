@@ -82,4 +82,4 @@ services:
         arguments: ['@security.authorization_checker']
     app.user:
         class: AppBundle\Service\UserService
-        arguments: ['@app.entity.repository.user']
+        arguments: ['@security.encoder_factory', '@app.entity.repository.user']

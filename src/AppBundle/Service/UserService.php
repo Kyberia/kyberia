@@ -3,15 +3,19 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Repository\UserRepository;
 use AppBundle\Entity\User;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
 class UserService
 {
+    /** @var EncoderFactory */
+    private $encoderFactory;
+
     /** @var UserRepository */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(EncoderFactory $encoderFactory, UserRepository $userRepository)
     {
+        $this->encoderFactory = $encoderFactory;
         $this->userRepository = $userRepository;
     }
 
@@ -41,23 +45,21 @@ class UserService
 
     //region Password
 
-    public function validatePassword(UserInterface $user, $password)
+    public function changePassword(User $user, $password)
     {
-        $hash = $user->getPassword();
+        $encoder = $this->encoderFactory->getEncoder($user);
 
-        if (strlen($hash) === 32) {
-            // Oldest MD5 passwords
-            return hash_equals($hash, md5($password));
-        } elseif (strlen($hash) === 80 && $hash[0] !== '$') {
-            // Salted SHA1
-            $hashParts = str_split($hash, 20);
-            $salt = $hashParts[0].$hashParts[3];
-            $sha1Hash = $hashParts[1].$hashParts[2];
+        $user->setPassword($encoder->encodePassword($password, ''));
+        $user->setDatePasswordChanged(new \DateTime());
 
-            return hash_equals($sha1Hash, sha1($salt.md5($password)));
-        } else {
-            return password_verify($password, $hash);
-        }
+        $this->userRepository->persist($user);
+    }
+
+    public function validatePassword(User $user, $password)
+    {
+        $encoder = $this->encoderFactory->getEncoder($user);
+
+        return $encoder->isPasswordValid($user->getPassword(), $password, '');
     }
 
     //endregion
