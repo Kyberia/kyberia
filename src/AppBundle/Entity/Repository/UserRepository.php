@@ -3,12 +3,11 @@ namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserRelation;
-use Doctrine\ORM\EntityRepository;
 
 /**
  * @method null|User findOneBy(array $criteria, array $orderBy = null)
  */
-class UserRepository extends EntityRepository
+class UserRepository extends AbstractEntityRepository
 {
     /**
      * Find all active users followed by user
