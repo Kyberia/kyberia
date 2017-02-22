@@ -20,7 +20,7 @@ AppBundle\Entity\NodeAccess:
             columns:
                 - node_id
                 - user_id
-    fields:
+    id:
         nodeId:
             column: node_id
             type: integer
@@ -35,6 +35,7 @@ AppBundle\Entity\NodeAccess:
             options:
                 unsigned: false
                 default: 0
+    fields:
         bookmark:
             column: node_bookmark
             type: string
