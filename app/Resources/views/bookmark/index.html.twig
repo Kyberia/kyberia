@@ -1,0 +1,24 @@
+{% extends '_layouts/main.html.twig' %}
+
+{% block content %}
+    {% for categoryId, category in categories %}
+        {% set categoryPanelId = 'category-panel-' ~ categoryId %}
+        <div class="box box-default box-widget panel">
+            <div class="box-header">
+                <a href="#{{ categoryPanelId }}" data-toggle="collapse">
+                    {{ category.name|default('Undefined') }}
+                </a>
+            </div>
+            <div id="{{ categoryPanelId }}" class="panel-collapse collapse in">
+                <div class="list-group">
+                    {% for bookmark in bookmarks[categoryId] %}
+                        <a class="list-group-item" href="{{ path('node.view', {id: bookmark.nodeId}) }}">
+                            <span class="badge">{{ bookmark.nodeUserSubchildCount }}</span>
+                            {{ bookmark.node.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
