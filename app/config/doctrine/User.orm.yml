@@ -179,6 +179,12 @@ AppBundle\Entity\User:
             length: 65535
             options:
                 fixed: false
+    oneToOne:
+        node:
+            targetEntity: AppBundle\Entity\Node
+            joinColumn:
+                name: user_id
+                referencedColumnName: node_id
     oneToMany:
         mails:
             targetEntity: AppBundle\Entity\Mail

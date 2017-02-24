@@ -145,6 +145,10 @@ class User extends AbstractEntity implements AdvancedUserInterface, EncoderAware
 
     //region Association properties
 
+    /** @var Node */
+    protected $node;
+
+    /** @var Mail[] */
     protected $mails;
 
     //endregion
@@ -428,6 +432,11 @@ class User extends AbstractEntity implements AdvancedUserInterface, EncoderAware
     //endregion
 
     //region Association methods
+
+    public function getNode()
+    {
+        return $this->node;
+    }
 
     public function getMails()
     {
