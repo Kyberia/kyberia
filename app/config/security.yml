@@ -2,15 +2,17 @@
 # http://symfony.com/doc/current/security.html
 security:
     encoders:
-        AppBundle\Entity\User:
+        bcrypt:
+            algorithm: bcrypt
+        md5:
             algorithm: md5
             encode_as_base64: false
             iterations: 0
+        salted_sha:
+            id: app.security.salted_sha_encoder
     providers:
-        db_provider:
-            entity:
-                class: AppBundle:User
-                property: login
+        form_user_provider:
+            id: app.security.form_user_provider
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -18,9 +20,10 @@ security:
             security: false
         main:
             anonymous: ~
-            form_login:
-                login_path: login
-                check_path: login
+            guard:
+                provider: form_user_provider
+                authenticators:
+                    - app.security.form_authenticator
             logout:
                 path:   /logout
                 target: /

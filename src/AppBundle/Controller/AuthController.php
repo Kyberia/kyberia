@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\LoginFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AuthController extends Controller
@@ -9,15 +10,13 @@ class AuthController extends Controller
     {
         $authenticationUtils = $this->get('security.authentication_utils');
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $form = $this->createForm(LoginFormType::class, [
+            'username' => $authenticationUtils->getLastUsername(),
+        ], []);
 
         return $this->render('auth/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error'         => $error,
+            'form' => $form->createView(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
     }
 }

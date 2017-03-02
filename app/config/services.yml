@@ -28,13 +28,21 @@ services:
         arguments:
             memcached: '@session.memcached'
             options: { prefix: '%session_memcached_prefix%', expiretime: '%session_memcached_expire%' }
-    # Security voters
+    # Security
+    app.security.form_authenticator:
+        class: AppBundle\Security\FormAuthenticator
+        arguments: ['@form.factory', '@router', '@app.user']
+    app.security.form_user_provider:
+        class: AppBundle\Security\FormUserProvider
+        arguments: ['@app.user']
     app.security.node_voter:
         class: AppBundle\Security\NodeVoter
         tags:
             - { name: security.voter }
         # small performance boost
         public: false
+    app.security.salted_sha_encoder:
+        class: AppBundle\Security\Encoder\SaltedShaPasswordEncoder
 
     # Twig
     app.twig.extension:
@@ -54,6 +62,11 @@ services:
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
             - AppBundle\Entity\Node
+    app.entity.repository.node_access:
+        class: AppBundle\Entity\Repository\NodeAccessRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\NodeAccess
     app.entity.repository.user:
         class: AppBundle\Entity\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]
@@ -61,6 +74,9 @@ services:
             - AppBundle\Entity\User
 
     # Application services
+    app.bookmark:
+        class: AppBundle\Service\BookmarkService
+        arguments: ['@app.entity.repository.node_access']
     app.mail:
         class: AppBundle\Service\MailService
         arguments: ['@doctrine.orm.entity_manager']
@@ -74,4 +90,4 @@ services:
         arguments: ['@security.authorization_checker']
     app.user:
         class: AppBundle\Service\UserService
-        arguments: ['@app.entity.repository.user']
+        arguments: ['@security.encoder_factory', '@app.entity.repository.user']

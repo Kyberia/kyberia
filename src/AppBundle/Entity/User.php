@@ -2,13 +2,18 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
  */
-class User extends AbstractEntity implements AdvancedUserInterface, \Serializable
+class User extends AbstractEntity implements AdvancedUserInterface, EncoderAwareInterface, \Serializable
 {
+    const ENCODER_BCRYPT    = 'bcrypt';
+    const ENCODER_MD5       = 'md5';
+    const ENCODER_SHA       = 'salted_sha';
+
     //region Column properties
 
     /**
@@ -140,6 +145,10 @@ class User extends AbstractEntity implements AdvancedUserInterface, \Serializabl
 
     //region Association properties
 
+    /** @var Node */
+    protected $node;
+
+    /** @var Mail[] */
     protected $mails;
 
     //endregion
@@ -424,6 +433,11 @@ class User extends AbstractEntity implements AdvancedUserInterface, \Serializabl
 
     //region Association methods
 
+    public function getNode()
+    {
+        return $this->node;
+    }
+
     public function getMails()
     {
         return $this->mails;
@@ -554,6 +568,29 @@ class User extends AbstractEntity implements AdvancedUserInterface, \Serializabl
     {
         //TODO this should return false for users with pending registrations
         return true;
+    }
+
+    //endregion
+
+    //region EncoderAwareInterface
+
+    /**
+     * Gets the name of the encoder used to encode the password.
+     *
+     * If the method returns null, the standard way to retrieve the encoder
+     * will be used instead.
+     *
+     * @return string
+     */
+    public function getEncoderName()
+    {
+        if (strlen($this->password) === 32) {
+            return self::ENCODER_MD5;
+        } elseif (strlen($this->password) === 80 && $this->password[0] !== '$') {
+            return self::ENCODER_SHA;
+        } else {
+            return self::ENCODER_BCRYPT;
+        }
     }
 
     //endregion

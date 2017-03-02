@@ -23,7 +23,7 @@ class MenuBuilder implements AuthenticatedUserAwareInterface
 
         $menu->addChild('Home', ['route' => 'homepage'])
             ->setExtra('icon', 'home fa-lg');
-        $menu->addChild('Bookmarks', ['uri' => '#'])
+        $menu->addChild('Bookmarks', ['route' => 'bookmark.index'])
             ->setExtra('icon', 'bookmark');
         $mailItem = $menu->addChild('Mail', ['route' => 'mail.index'])
             ->setExtra('icon', 'envelope');
