@@ -18,6 +18,7 @@ SHELL ["/bin/zsh", "-lc"]
 RUN yum -y install httpd24 \
         php71w-fpm php71w-mysqlnd php71w-cli php71w-devel php71w-mbstring \
         php71w-xml php71w-intl php71w-process \
+        nodejs npm nasm \
         less vim git && \
     yum -y groupinstall 'Development Tools'
 
@@ -85,6 +86,8 @@ COPY docker/supervisord.conf /etc/supervisord.conf
 COPY docker/httpd24_kyberia.conf /opt/rh/httpd24/root/etc/httpd/conf.d/kyberia.conf
 COPY docker/symfony_htaccess /opt/rh/httpd24/root/etc/httpd/kyberia_htaccess.conf
 COPY docker/warprc /root/.warprc
+COPY docker/npm_update.sh /usr/local/bin/npm_update.sh
+COPY docker/prepare_kyberia_web.sh /usr/local/bin/prepare_kyberia_web.sh
 
 EXPOSE 80
     
