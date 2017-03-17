@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -18,11 +19,13 @@ class User extends AbstractEntity implements AdvancedUserInterface, EncoderAware
 
     /**
      * @var integer
+     * @Serializer\Groups({"list"})
      */
     protected $id;
 
     /**
      * @var string
+     * @Serializer\Groups({"list"})
      */
     protected $login;
 

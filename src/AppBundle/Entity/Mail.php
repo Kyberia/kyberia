@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Mail
@@ -12,6 +13,7 @@ class Mail extends AbstractEntity
 
     /**
      * @var integer
+     * @Serializer\Groups({"list"})
      */
     protected $id;
 
@@ -22,21 +24,25 @@ class Mail extends AbstractEntity
 
     /**
      * @var integer
+     * @Serializer\Groups({"list"})
      */
     protected $userId;
 
     /**
      * @var integer
+     * @Serializer\Groups({"list"})
      */
     protected $userIdFrom;
 
     /**
      * @var integer
+     * @Serializer\Groups({"list"})
      */
     protected $userIdTo;
 
     /**
      * @var string
+     * @Serializer\Groups({"list"})
      */
     protected $text;
 
@@ -47,6 +53,7 @@ class Mail extends AbstractEntity
 
     /**
      * @var DateTime
+     * @Serializer\Groups({"list"})
      */
     protected $createdAt;
 
@@ -54,13 +61,22 @@ class Mail extends AbstractEntity
 
     //region Association properties
 
-    /** @var User */
+    /**
+     * @var User
+     * @Serializer\Groups({"list"})
+     */
     protected $user;
 
-    /** @var User */
+    /**
+     * @var User
+     * @Serializer\Groups({"list"})
+     */
     protected $userFrom;
 
-    /** @var User */
+    /**
+     * @var User
+     * @Serializer\Groups({"list"})
+     */
     protected $userTo;
 
     //endregion

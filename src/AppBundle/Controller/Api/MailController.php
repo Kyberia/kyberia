@@ -3,12 +3,10 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Service\MailService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
-class MailController extends Controller
+class MailController extends FOSRestController
 {
     /**
      * @return MailService
@@ -19,13 +17,13 @@ class MailController extends Controller
     }
 
     /**
-     * @Route("/api/mail/new")
-     * @Method("GET")
+     * @Rest\Get("/api/mail/new")
+     * @Rest\View(serializerGroups={"list"})
      */
     public function newMail()
     {
         $mails = $this->getMailService()->getConversationList(['onlyNew' => true]);
 
-        return new Response('asdf');
+        return $mails;
     }
 }
