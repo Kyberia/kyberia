@@ -63,6 +63,8 @@ class FormUserProvider implements UserProviderInterface
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 
+        $user = $this->userService->getUserById($user->getId());
+
         return $user;
     }
 
