@@ -1,0 +1,25 @@
+include:
+    - tests/*Bundle
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    support: tests/_support
+#    envs: tests/_envs
+settings:
+    colors: true
+    memory_limit: 1024M
+modules:
+    config:
+        Db:
+            dsn: 'mysql:host=%database_host%;dbname=%database_name%_test'
+            user: '%database_user%'
+            password: '%database_password%'
+            populate: true # load dump before all tests
+#            cleanup: true # load dump for each test
+            dump: 'tests/_data/dump.sql'
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+params:
+    - app/config/parameters.yml
