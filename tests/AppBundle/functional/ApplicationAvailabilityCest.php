@@ -11,12 +11,19 @@ class ApplicationAvailabilityCest
         $I->followRedirects(false);
     }
 
+    public function accessHomepage(FunctionalTester $I)
+    {
+        $I->amOnRoute('homepage');
+        $I->expect('redirect to kyberia.sk');
+        $I->seeResponseCodeIs(302);
+        $I->haveHttpHeader('Location', 'https://kyberia.sk');
+    }
+
     /**
      * @example {"url": "/login"}
      */
     public function accessGuestPages(FunctionalTester $I, Example $example)
     {
-        $I->followRedirects(false);
         $I->amOnPage($example['url']);
         $I->seeResponseCodeIs(200);
     }
