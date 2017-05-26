@@ -5,6 +5,8 @@ modules:
             app_path: '../../app'
             var_path: '../../var'
             environment: 'test'
+            debug: true
+            cache_router: true
         - Doctrine2:
             depends: Symfony
         - AppBundle\Helper\FunctionalHelper
